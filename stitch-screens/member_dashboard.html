@@ -1,0 +1,372 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Member Dashboard | IronForge Fitness</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&amp;family=JetBrains+Mono:wght@500&amp;family=EB+Garamond:ital@1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#2d2a23",
+                    "surface-variant": "#38342d",
+                    "on-tertiary-container": "#2e3b77",
+                    "secondary-fixed": "#ffdf92",
+                    "on-primary-fixed-variant": "#584400",
+                    "secondary-fixed-dim": "#e6c368",
+                    "primary-fixed": "#ffe08f",
+                    "on-secondary": "#3e2e00",
+                    "error": "#ffb4ab",
+                    "outline-variant": "#4d4637",
+                    "surface-container-lowest": "#100e08",
+                    "on-tertiary-fixed-variant": "#35437e",
+                    "primary-fixed-dim": "#e6c364",
+                    "error-container": "#93000a",
+                    "surface-container-low": "#1e1b15",
+                    "on-secondary-fixed": "#241a00",
+                    "surface-container": "#221f19",
+                    "background": "#16130d",
+                    "primary": "#e6c364",
+                    "surface-container-highest": "#38342d",
+                    "on-background": "#e9e1d7",
+                    "on-primary-fixed": "#241a00",
+                    "on-surface-variant": "#d0c5b2",
+                    "on-error": "#690005",
+                    "on-error-container": "#ffdad6",
+                    "inverse-on-surface": "#343029",
+                    "tertiary-fixed-dim": "#b9c3ff",
+                    "on-secondary-container": "#f1cd71",
+                    "tertiary-fixed": "#dde1ff",
+                    "surface-dim": "#16130d",
+                    "tertiary": "#b9c4ff",
+                    "inverse-primary": "#755b00",
+                    "secondary": "#e6c368",
+                    "surface": "#16130d",
+                    "on-tertiary-fixed": "#041451",
+                    "tertiary-container": "#9ba8eb",
+                    "on-secondary-fixed-variant": "#594400",
+                    "surface-tint": "#e6c364",
+                    "on-surface": "#e9e1d7",
+                    "primary-container": "#c9a84c",
+                    "inverse-surface": "#e9e1d7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "grid-margin": "40px",
+                    "base": "8px",
+                    "gutter": "24px",
+                    "section-gap-desktop": "120px",
+                    "section-gap-mobile": "64px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Bebas Neue"],
+                    "body-lg": ["DM Sans"],
+                    "headline-md": ["Bebas Neue"],
+                    "stats-lg": ["JetBrains Mono"],
+                    "display-sm": ["Bebas Neue"],
+                    "body-md": ["DM Sans"],
+                    "quote-italic": ["EB Garamond"],
+                    "label-caps": ["DM Sans"]
+            },
+            "fontSize": {
+                    "display-lg": ["96px", {"lineHeight": "90px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "32px", "letterSpacing": "0.02em", "fontWeight": "400"}],
+                    "stats-lg": ["40px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                    "display-sm": ["48px", {"lineHeight": "48px", "letterSpacing": "0.03em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "quote-italic": ["24px", {"lineHeight": "32px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>.grain {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBW0jPMVLJFy2eM-U7dBCrj5kdvaDiod46IUIDJZGIK598A5C00uoD8EkVLeUf_LyW9TArceSaV_UUaAsjnpPnUeLYCv89IxBdc8ydjhCvcO8oj-f7-y7QfpMlzaQzmOURSXH3sT-JPWITakLBroO3a4tyYrLRtE-UXRCYCXMSHhCMGLstdSzSm9tiPP6O_AeN2H-WC5jSd3gbacpeKlmU-Nqau5wOYM6X3qsqFgzIKIuNY1YZVz7v3pJAwWkLLiWZAasvhH-QF6_ae);
+    filter: contrast(150%) brightness(1000%);
+    opacity: 0.03;
+    pointer-events: none
+    }
+.gold-shimmer:hover {
+    background: linear-gradient(45deg, #c9a84c 25%, #f1cd71 50%, #c9a84c 75%);
+    background-size: 200% 200%;
+    animation: shimmer 1.5s infinite linear
+    }
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+        } 100% {
+        background-position: 200% 0;
+        }
+    }
+.glass-panel {
+    background: rgba(17, 17, 17, 0.4);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid #2A2A2A
+    }
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px
+    }
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent
+    }
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #2A2A2A;
+    border-radius: 10px
+    }</style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary selection:text-on-primary antialiased overflow-hidden h-screen flex">
+<div class="fixed inset-0 grain z-[9999]"></div>
+<!-- Sidebar Navigation -->
+<aside class="w-72 h-full bg-surface-container-lowest border-r border-outline-variant/30 hidden md:flex flex-col flex-shrink-0 z-40">
+<div class="p-8">
+<h1 class="font-display-sm text-display-sm tracking-widest text-primary">IRONFORGE</h1>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-8">
+<!-- Active State: Dashboard -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-primary bg-primary/10 border-l-4 border-primary transition-all duration-300" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-variant/30 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">card_membership</span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest">Membership</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-variant/30 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest">Classes</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-variant/30 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest">Profile</span>
+</a>
+</nav>
+<div class="p-6 mt-auto">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-error hover:bg-error/10 transition-all duration-300 border border-transparent hover:border-error/20" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+
+<!-- Top Bar -->
+<header class="h-20 flex items-center justify-between px-grid-margin z-30">
+<div class="flex flex-col">
+<h2 class="font-headline-md text-headline-md text-on-background">Good morning, Sanjay 👋</h2>
+<p class="font-body-md text-on-surface-variant opacity-70">Focus is your only fuel today.</p>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden sm:flex flex-col items-end">
+<span class="font-label-caps text-label-caps text-primary tracking-widest">STREAK</span>
+<span class="font-stats-lg text-[24px] text-on-background leading-none">12 DAYS</span>
+</div>
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary/50">
+<img alt="Sanjay's Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a young South Asian man with a well-groomed beard and athletic build, set against a dark cinematic background with moody gold rim lighting. The style is high-contrast and editorial, matching a luxury fitness brand's aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRIq3_C_pIfYcAEvJdtSOS5zwtYF9LpSX7qcY7TV7bQZs5Tnl5PGk8k2eZ-RczIrIqjRBCUxtB8jJCEtwF1-RwC8wRCQY9YROuNZAUbzkVzgy-9UUnwiPF7_XV8yNklS5Rz1IsCTxLyoDF9wNh-lkrVg8_t2jCc28EmZdfyw3V25euv6PpgM3IamvWB9FyqMV-kZ5TdBbQovq5Ks_wAW7YumrTRlvLm2Jlv2mOEdGerajJnw-38oJZ8nmQ8FK-xzL8C2D1qxzh2xjJ">
+</div>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-grid-margin z-20">
+<div class="max-w-7xl mx-auto space-y-12">
+<!-- Hero Bento Section -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Membership Status Card -->
+<div class="lg:col-span-8 bg-surface-container border border-outline-variant/30 rounded-lg p-8 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-8">
+<span class="px-4 py-1 bg-primary text-on-primary font-label-caps text-label-caps tracking-widest rounded-full">ACTIVE</span>
+</div>
+<div class="relative z-10 space-y-4">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-[0.2em]">CURRENT PLAN</h3>
+<h4 class="font-display-sm text-display-sm text-primary">PRO MEMBER</h4>
+<p class="font-body-lg text-body-lg max-w-md opacity-80">Access to all elite locations, private recovery suites, and unlimited high-intensity tactical training classes.</p>
+<div class="pt-8 flex flex-wrap gap-8">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant">JOINED</span>
+<span class="font-stats-lg text-[28px] text-on-background">MAR '23</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant">TIER</span>
+<span class="font-stats-lg text-[28px] text-on-background italic font-quote-italic">Elite</span>
+</div>
+</div>
+</div>
+<!-- Visual accent -->
+<div class="absolute bottom-0 right-0 w-1/2 h-full opacity-10 group-hover:opacity-20 transition-opacity">
+
+</div>
+</div>
+<!-- Quick Stats Cards -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<div class="bg-surface-container-high border border-outline-variant/30 p-6 rounded-lg flex flex-col justify-between h-full">
+<span class="material-symbols-outlined text-primary mb-2">event_available</span>
+<h5 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Classes Booked</h5>
+<span class="font-stats-lg text-stats-lg text-on-background">08</span>
+</div>
+<div class="bg-surface-container-high border border-outline-variant/30 p-6 rounded-lg flex flex-col justify-between h-full">
+<span class="material-symbols-outlined text-primary mb-2">trending_up</span>
+<h5 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Sessions Attended</h5>
+<span class="font-stats-lg text-stats-lg text-on-background">24</span>
+</div>
+</div>
+</section>
+<!-- Renewal Section -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="bg-surface-container border border-outline-variant/30 rounded-lg p-6 flex items-center justify-between col-span-1 md:col-span-2">
+<div class="space-y-1">
+<h5 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Days Until Renewal</h5>
+<div class="flex items-baseline gap-2">
+<span class="font-stats-lg text-stats-lg text-primary">18</span>
+<span class="font-label-caps text-on-surface-variant">DAYS LEFT</span>
+</div>
+</div>
+<div class="w-24 h-24 relative">
+<svg class="w-full h-full -rotate-90">
+<circle cx="48" cy="48" fill="transparent" r="40" stroke="#1A1A1A" stroke-width="4"></circle>
+<circle cx="48" cy="48" fill="transparent" r="40" stroke="#C9A84C" stroke-dasharray="251.2" stroke-dashoffset="60" stroke-width="4"></circle>
+</svg>
+<span class="absolute inset-0 flex items-center justify-center font-stats-lg text-[18px]">72%</span>
+</div>
+</div>
+<button class="md:col-span-2 bg-primary text-on-primary font-display-sm text-[24px] uppercase tracking-widest rounded-lg gold-shimmer transition-all duration-300 flex items-center justify-center gap-4 py-8 group">
+                        UPGRADE TO TITANIUM
+                        <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</button>
+</section>
+<!-- Data Tables -->
+<section class="grid grid-cols-1 xl:grid-cols-2 gap-section-gap-mobile">
+<!-- Upcoming Classes -->
+<div class="space-y-6">
+<div class="flex items-center justify-between border-b border-primary/20 pb-4">
+<h3 class="font-display-sm text-headline-md tracking-widest">UPCOMING CLASSES</h3>
+<a class="font-label-caps text-label-caps text-primary hover:opacity-70" href="#">VIEW ALL</a>
+</div>
+<div class="space-y-4">
+<!-- Class Item -->
+<div class="group bg-surface-container/50 border border-outline-variant/30 p-5 rounded-lg flex items-center gap-6 hover:bg-surface-container transition-all">
+<div class="flex flex-col items-center justify-center w-16 h-16 bg-surface-container-highest border border-primary/30 rounded">
+<span class="font-label-caps text-[10px] text-on-surface-variant">OCT</span>
+<span class="font-stats-lg text-[24px] leading-none text-primary">14</span>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-md text-[20px] tracking-wide group-hover:text-primary transition-colors">POWER LIFTING: FOUNDATIONS</h4>
+<div class="flex items-center gap-4 text-on-surface-variant text-[14px]">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">schedule</span> 06:30 AM</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">person</span> Coach Marcus</span>
+</div>
+</div>
+<button class="px-4 py-2 border border-outline-variant hover:border-primary text-on-background font-label-caps text-[10px] tracking-widest rounded transition-all">RESCHEDULE</button>
+</div>
+<div class="group bg-surface-container/50 border border-outline-variant/30 p-5 rounded-lg flex items-center gap-6 hover:bg-surface-container transition-all">
+<div class="flex flex-col items-center justify-center w-16 h-16 bg-surface-container-highest border border-primary/30 rounded">
+<span class="font-label-caps text-[10px] text-on-surface-variant">OCT</span>
+<span class="font-stats-lg text-[24px] leading-none text-primary">16</span>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-md text-[20px] tracking-wide group-hover:text-primary transition-colors">HIIT: METABOLIC BURN</h4>
+<div class="flex items-center gap-4 text-on-surface-variant text-[14px]">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">schedule</span> 05:00 PM</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">person</span> Coach Sarah</span>
+</div>
+</div>
+<button class="px-4 py-2 border border-outline-variant hover:border-primary text-on-background font-label-caps text-[10px] tracking-widest rounded transition-all">RESCHEDULE</button>
+</div>
+</div>
+</div>
+<!-- Recent Payments -->
+<div class="space-y-6">
+<div class="flex items-center justify-between border-b border-primary/20 pb-4">
+<h3 class="font-display-sm text-headline-md tracking-widest">BILLING HISTORY</h3>
+<a class="font-label-caps text-label-caps text-primary hover:opacity-70" href="#">REPORTS</a>
+</div>
+<div class="bg-surface-container/50 border border-outline-variant/30 rounded-lg overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-highest/30">
+<th class="p-5 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Description</th>
+<th class="p-5 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Date</th>
+<th class="p-5 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Amount</th>
+<th class="p-5 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest text-right">Receipt</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+<tr class="hover:bg-surface-container/80 transition-colors">
+<td class="p-5 font-body-md">Monthly Pro Membership</td>
+<td class="p-5 font-body-md text-on-surface-variant">Sep 28, 2024</td>
+<td class="p-5 font-stats-lg text-[18px] text-primary">$180.00</td>
+<td class="p-5 text-right"><span class="material-symbols-outlined cursor-pointer hover:text-primary">download</span></td>
+</tr>
+<tr class="hover:bg-surface-container/80 transition-colors">
+<td class="p-5 font-body-md">Personal Training (x4)</td>
+<td class="p-5 font-body-md text-on-surface-variant">Sep 15, 2024</td>
+<td class="p-5 font-stats-lg text-[18px] text-primary">$450.00</td>
+<td class="p-5 text-right"><span class="material-symbols-outlined cursor-pointer hover:text-primary">download</span></td>
+</tr>
+<tr class="hover:bg-surface-container/80 transition-colors">
+<td class="p-5 font-body-md">Monthly Pro Membership</td>
+<td class="p-5 font-body-md text-on-surface-variant">Aug 28, 2024</td>
+<td class="p-5 font-stats-lg text-[18px] text-primary">$180.00</td>
+<td class="p-5 text-right"><span class="material-symbols-outlined cursor-pointer hover:text-primary">download</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Footer Shell -->
+<footer class="h-16 glass-panel border-t border-outline-variant/30 flex items-center justify-between px-grid-margin z-40">
+<p class="font-label-caps text-[10px] text-on-surface-variant tracking-[0.2em]">© 2024 IRONFORGE FITNESS. ELITE CRAFTED.</p>
+<div class="flex gap-8">
+<a class="font-label-caps text-[10px] text-on-surface-variant hover:text-primary transition-colors tracking-widest uppercase" href="#">Support</a>
+<a class="font-label-caps text-[10px] text-on-surface-variant hover:text-primary transition-colors tracking-widest uppercase" href="#">Terms</a>
+</div>
+</footer>
+</main>
+<!-- Mobile Navigation Shell -->
+<nav class="fixed bottom-0 left-0 right-0 h-20 glass-panel md:hidden flex items-center justify-around px-4 z-50">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-caps text-[10px]">HOME</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="font-label-caps text-[10px]">CLASSES</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-caps text-[10px]">BILLING</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-[10px]">ME</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for dashboard loading
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.bg-surface-container, .bg-surface-container-high');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 + (index * 50));
+            });
+        });
+    </script>
+</body></html>

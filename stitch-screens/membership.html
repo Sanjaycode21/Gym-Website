@@ -1,0 +1,489 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Membership Plans | IronForge Fitness</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&amp;family=JetBrains+Mono:wght@500&amp;family=EB+Garamond:ital@1&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@100..900&amp;family=DM+Sans:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#2d2a23",
+                    "surface-variant": "#38342d",
+                    "on-tertiary-container": "#2e3b77",
+                    "secondary-fixed": "#ffdf92",
+                    "on-primary-fixed-variant": "#584400",
+                    "secondary-fixed-dim": "#e6c368",
+                    "primary-fixed": "#ffe08f",
+                    "on-secondary": "#3e2e00",
+                    "error": "#ffb4ab",
+                    "outline-variant": "#4d4637",
+                    "surface-container-lowest": "#100e08",
+                    "on-tertiary-fixed-variant": "#35437e",
+                    "primary-fixed-dim": "#e6c364",
+                    "error-container": "#93000a",
+                    "surface-container-low": "#1e1b15",
+                    "on-secondary-fixed": "#241a00",
+                    "surface-container": "#221f19",
+                    "background": "#16130d",
+                    "primary": "#e6c364",
+                    "surface-container-highest": "#38342d",
+                    "on-primary": "#3d2e00",
+                    "surface-bright": "#3d3931",
+                    "on-primary-container": "#503d00",
+                    "on-tertiary": "#1e2b66",
+                    "outline": "#99907e",
+                    "secondary-container": "#6f5600",
+                    "on-background": "#e9e1d7",
+                    "on-primary-fixed": "#241a00",
+                    "on-surface-variant": "#d0c5b2",
+                    "on-error": "#690005",
+                    "on-error-container": "#ffdad6",
+                    "inverse-on-surface": "#343029",
+                    "tertiary-fixed-dim": "#b9c3ff",
+                    "on-secondary-container": "#f1cd71",
+                    "tertiary-fixed": "#dde1ff",
+                    "surface-dim": "#16130d",
+                    "tertiary": "#b9c4ff",
+                    "inverse-primary": "#755b00",
+                    "secondary": "#e6c368",
+                    "surface": "#16130d",
+                    "on-tertiary-fixed": "#041451",
+                    "tertiary-container": "#9ba8eb",
+                    "on-secondary-fixed-variant": "#594400",
+                    "surface-tint": "#e6c364",
+                    "on-surface": "#e9e1d7",
+                    "primary-container": "#c9a84c",
+                    "inverse-surface": "#e9e1d7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "grid-margin": "40px",
+                    "base": "8px",
+                    "gutter": "24px",
+                    "section-gap-desktop": "120px",
+                    "section-gap-mobile": "64px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Bebas Neue"],
+                    "body-lg": ["DM Sans"],
+                    "headline-md": ["Bebas Neue"],
+                    "stats-lg": ["JetBrains Mono"],
+                    "display-sm": ["Bebas Neue"],
+                    "body-md": ["DM Sans"],
+                    "quote-italic": ["EB Garamond"],
+                    "label-caps": ["DM Sans"]
+            },
+            "fontSize": {
+                    "display-lg": ["96px", {"lineHeight": "90px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "32px", "letterSpacing": "0.02em", "fontWeight": "400"}],
+                    "stats-lg": ["40px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                    "display-sm": ["48px", {"lineHeight": "48px", "letterSpacing": "0.03em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "quote-italic": ["24px", {"lineHeight": "32px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            background: rgba(17, 17, 17, 0.4);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(42, 42, 42, 0.3);
+        }
+        .grain-overlay {
+            pointer-events: none;
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("https://www.transparenttextures.com/patterns/60-lines.png");
+            opacity: 0.03;
+            z-index: 9999;
+        }
+        .gold-shimmer:hover {
+            background: linear-gradient(135deg, #c9a84c 0%, #ffe08f 50%, #c9a84c 100%);
+            background-size: 200% 200%;
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-active .accordion-content {
+            max-height: 200px;
+        }
+        .gold-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, #c9a84c 50%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary selection:text-on-primary overflow-x-hidden">
+<div class="grain-overlay"></div>
+<!-- Navigation -->
+<header class="glass-nav fixed top-0 w-full h-20 z-50 flex justify-between items-center px-grid-margin">
+<div class="font-display-sm text-display-sm tracking-widest text-primary">IRONFORGE</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Home</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">About</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">Membership</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Classes</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Trainers</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#">Contact</a>
+</nav>
+<button class="bg-primary text-on-primary font-display-sm text-[16px] px-8 py-2 gold-shimmer transition-all duration-300">JOIN NOW</button>
+</header>
+<main class="pt-32">
+<!-- Hero & Breadcrumb -->
+<section class="px-grid-margin mb-16">
+<nav class="flex gap-2 font-label-caps text-label-caps text-outline-variant mb-6 uppercase">
+<a class="hover:text-primary" href="#">Home</a>
+<span>/</span>
+<span class="text-primary">Membership</span>
+</nav>
+<h1 class="font-display-lg text-display-lg uppercase mb-8">Membership Plans</h1>
+<!-- Pricing Toggle -->
+<div class="flex items-center justify-center gap-6 mt-12">
+<span class="font-label-caps text-label-caps tracking-widest">MONTHLY</span>
+<button class="relative w-16 h-8 bg-surface-container rounded-full p-1 transition-all duration-300" id="billingToggle">
+<div class="w-6 h-6 bg-primary rounded-full transition-transform duration-300 translate-x-8" id="toggleCircle"></div>
+</button>
+<span class="font-label-caps text-label-caps tracking-widest text-primary">ANNUAL (Save 20%)</span>
+</div>
+</section>
+<!-- Pricing Cards -->
+<section class="px-grid-margin grid grid-cols-1 md:grid-cols-3 gap-gutter max-w-7xl mx-auto mb-section-gap-desktop">
+<!-- Starter -->
+<div class="bg-surface-container-low border border-outline-variant/30 p-10 flex flex-col items-start transition-all duration-500 hover:border-primary/50 group">
+<span class="font-label-caps text-label-caps bg-surface-variant px-3 py-1 mb-6">BASIC ACCESS</span>
+<h3 class="font-headline-md text-headline-md mb-2">STARTER</h3>
+<div class="flex items-baseline gap-1 mb-8">
+<span class="font-stats-lg text-stats-lg text-primary">₹999</span>
+<span class="text-outline-variant font-label-caps">/ MONTH</span>
+</div>
+<div class="space-y-4 mb-10 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span class="text-body-md">Access to Cardio Zone</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span class="text-body-md">Standard Strength Area</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span class="text-body-md">Locker Room Access</span>
+</div>
+<div class="flex items-center gap-3 opacity-30">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+<span class="text-body-md">No Guest Passes</span>
+</div>
+</div>
+<button class="mt-auto w-full py-4 border border-primary text-primary font-display-sm text-[18px] hover:bg-primary hover:text-on-primary transition-all duration-300 uppercase">Select Starter</button>
+</div>
+<!-- Pro -->
+<div class="relative bg-surface-container border-2 border-primary p-10 flex flex-col items-start scale-105 z-10 shadow-2xl">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-on-primary font-label-caps text-[10px] px-6 py-1 tracking-[0.2em] whitespace-nowrap">MOST POPULAR</div>
+<span class="font-label-caps text-label-caps bg-primary/20 text-primary px-3 py-1 mb-6">FULL EXPERIENCE</span>
+<h3 class="font-headline-md text-headline-md mb-2">PRO</h3>
+<div class="flex items-baseline gap-1 mb-8">
+<span class="font-stats-lg text-stats-lg text-primary">₹1,799</span>
+<span class="text-outline-variant font-label-caps">/ MONTH</span>
+</div>
+<div class="space-y-4 mb-10 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span class="text-body-md">All Standard Features</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span class="text-body-md">Unlimited Group Classes</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span class="text-body-md">Premium Sauna Access</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span class="text-body-md">2 Guest Passes / Mo</span>
+</div>
+</div>
+<button class="mt-auto w-full py-4 bg-primary text-on-primary font-display-sm text-[18px] gold-shimmer transition-all duration-300 uppercase">Select Pro</button>
+</div>
+<!-- Elite -->
+<div class="bg-surface-container-low border border-outline-variant/30 p-10 flex flex-col items-start transition-all duration-500 hover:border-primary/50 group">
+<span class="font-label-caps text-label-caps bg-surface-variant px-3 py-1 mb-6">VIP STATUS</span>
+<h3 class="font-headline-md text-headline-md mb-2">ELITE</h3>
+<div class="flex items-baseline gap-1 mb-8">
+<span class="font-stats-lg text-stats-lg text-primary">₹2,999</span>
+<span class="text-outline-variant font-label-caps">/ MONTH</span>
+</div>
+<div class="space-y-4 mb-10 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span class="text-body-md">All Pro Features</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span class="text-body-md">Private Locker &amp; Laundry</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span class="text-body-md">Weekly Nutrition Consult</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span class="text-body-md">Priority Booking Access</span>
+</div>
+</div>
+<button class="mt-auto w-full py-4 border border-primary text-primary font-display-sm text-[18px] hover:bg-primary hover:text-on-primary transition-all duration-300 uppercase">Select Elite</button>
+</div>
+</section>
+<!-- Feature Comparison -->
+<section class="px-grid-margin py-section-gap-desktop bg-surface-container-lowest">
+<div class="max-w-5xl mx-auto">
+<h2 class="font-display-sm text-display-sm text-center mb-16 uppercase">Detailed Comparison</h2>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="border-b border-outline-variant/30">
+<th class="py-6 font-label-caps text-outline-variant">FEATURES</th>
+<th class="py-6 font-display-sm text-[24px] text-center">STARTER</th>
+<th class="py-6 font-display-sm text-[24px] text-center text-primary">PRO</th>
+<th class="py-6 font-display-sm text-[24px] text-center">ELITE</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr>
+<td class="py-6 text-body-md">24/7 Gym Access</td>
+<td class="text-center"><span class="material-symbols-outlined text-primary">check</span></td>
+<td class="text-center"><span class="material-symbols-outlined text-primary">check</span></td>
+<td class="text-center"><span class="material-symbols-outlined text-primary">check</span></td>
+</tr>
+<tr>
+<td class="py-6 text-body-md">Olympic Lifting Platform</td>
+<td class="text-center"><span class="material-symbols-outlined text-outline-variant">close</span></td>
+<td class="text-center"><span class="material-symbols-outlined text-primary">check</span></td>
+<td class="text-center"><span class="material-symbols-outlined text-primary">check</span></td>
+</tr>
+<tr>
+<td class="py-6 text-body-md">High-Intensity Classes</td>
+<td class="text-center text-outline-variant">2 / Mo</td>
+<td class="text-center">Unlimited</td>
+<td class="text-center">Unlimited</td>
+</tr>
+<tr>
+<td class="py-6 text-body-md">Sauna &amp; Steam Bath</td>
+<td class="text-center text-outline-variant">Pay per use</td>
+<td class="text-center"><span class="material-symbols-outlined text-primary">check</span></td>
+<td class="text-center"><span class="material-symbols-outlined text-primary">check</span></td>
+</tr>
+<tr>
+<td class="py-6 text-body-md">Biometric Assessment</td>
+<td class="text-center text-outline-variant">No</td>
+<td class="text-center">Monthly</td>
+<td class="text-center">Weekly</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Add-ons Bento -->
+<section class="px-grid-margin py-section-gap-desktop max-w-7xl mx-auto">
+<h2 class="font-display-sm text-display-sm mb-12 uppercase">Enhance Your Training</h2>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<!-- Personal Training -->
+<div class="md:col-span-2 bg-surface-container relative h-80 group overflow-hidden">
+<div class="absolute inset-0 bg-black/40 z-10"></div>
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A focused high-end personal training session with a professional coach guiding a client through heavy bench presses. The lighting is cinematic, highlighting the intensity and luxury atmosphere of a high-performance gym. The palette is dominated by deep blacks and gold accents from the premium equipment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxKZYzKOKQ9iNOCI79TLv6OdmgAWT7QeNNMsYJoI3ciV1UJunF1ivi2pfYlinXbtEKTOPRmwnCAFFQTUQEGA4lHfG4-qDvYAy787Lu-C5EHBCXqpto2b8zyF-D2TcFO-4t98y_HzeUGLriKoYTxqky_XD9ei5KbhbZybpMy3UxuXfSv9jP1NAhpBi3mn_fMcRvL0nWVGgtsdXnf27DLwOMLnZ0nX4CrFL5i97qaEuJqq07TNhU9apd83LSyM4smA_BhTG1ctW3Jtz5">
+<div class="absolute inset-0 z-20 p-8 flex flex-col justify-end">
+<h4 class="font-headline-md text-headline-md text-white">PERSONAL TRAINING</h4>
+<p class="text-on-surface-variant font-body-md mb-4">Dedicated 1-on-1 elite coaching sessions.</p>
+<span class="text-primary font-stats-lg text-[24px]">From ₹1,200 / hr</span>
+</div>
+</div>
+<!-- Nutrition -->
+<div class="bg-surface-container p-8 flex flex-col justify-between border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary text-[40px]">restaurant</span>
+<div>
+<h4 class="font-headline-md text-[24px] mb-2">NUTRITION</h4>
+<p class="text-on-surface-variant text-body-md">Tailored meal plans and supplement guidance.</p>
+</div>
+<span class="text-primary font-label-caps mt-4">+₹500 / MO</span>
+</div>
+<!-- Locker -->
+<div class="bg-surface-container p-8 flex flex-col justify-between border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary text-[40px]">lock</span>
+<div>
+<h4 class="font-headline-md text-[24px] mb-2">LOCKER</h4>
+<p class="text-on-surface-variant text-body-md">Personalized secure storage for your gear.</p>
+</div>
+<span class="text-primary font-label-caps mt-4">+₹300 / MO</span>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="px-grid-margin py-section-gap-desktop bg-surface-container-low">
+<div class="max-w-3xl mx-auto">
+<h2 class="font-display-sm text-display-sm text-center mb-16 uppercase">Frequently Asked Questions</h2>
+<div class="space-y-4">
+<!-- FAQ 1 -->
+<div class="accordion-item border border-outline-variant/30">
+<button class="w-full flex justify-between items-center p-6 text-left hover:bg-surface-variant transition-colors">
+<span class="font-headline-md text-[20px]">Can I pause my membership?</span>
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+<div class="accordion-content bg-background px-6">
+<p class="py-6 text-on-surface-variant">Yes, members can pause their membership for up to 3 months in a calendar year for a small administrative fee.</p>
+</div>
+</div>
+<!-- FAQ 2 -->
+<div class="accordion-item border border-outline-variant/30">
+<button class="w-full flex justify-between items-center p-6 text-left hover:bg-surface-variant transition-colors">
+<span class="font-headline-md text-[20px]">What are the guest pass rules?</span>
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+<div class="accordion-content bg-background px-6">
+<p class="py-6 text-on-surface-variant">Pro and Elite members receive monthly guest passes. Guests must sign a waiver and can access the gym for one full day.</p>
+</div>
+</div>
+<!-- FAQ 3 -->
+<div class="accordion-item border border-outline-variant/30">
+<button class="w-full flex justify-between items-center p-6 text-left hover:bg-surface-variant transition-colors">
+<span class="font-headline-md text-[20px]">Is there a cancellation fee?</span>
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+<div class="accordion-content bg-background px-6">
+<p class="py-6 text-on-surface-variant">Monthly plans can be cancelled with 30 days notice. Annual plans have specific terms regarding early termination.</p>
+</div>
+</div>
+<!-- FAQ 4 -->
+<div class="accordion-item border border-outline-variant/30">
+<button class="w-full flex justify-between items-center p-6 text-left hover:bg-surface-variant transition-colors">
+<span class="font-headline-md text-[20px]">How do I book personal training?</span>
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+<div class="accordion-content bg-background px-6">
+<p class="py-6 text-on-surface-variant">Sessions can be booked directly through the IronForge App or at the reception desk.</p>
+</div>
+</div>
+<!-- FAQ 5 -->
+<div class="accordion-item border border-outline-variant/30">
+<button class="w-full flex justify-between items-center p-6 text-left hover:bg-surface-variant transition-colors">
+<span class="font-headline-md text-[20px]">Is parking provided?</span>
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+<div class="accordion-content bg-background px-6">
+<p class="py-6 text-on-surface-variant">We offer complimentary 2-hour parking for Elite members. Other tiers can purchase parking as an add-on.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="relative py-section-gap-desktop overflow-hidden">
+
+<div class="relative z-10 px-grid-margin text-center">
+<div class="gold-divider mb-12"></div>
+<h2 class="font-display-lg text-display-lg uppercase mb-8">Ready to Forge Your Legacy?</h2>
+<p class="text-body-lg max-w-2xl mx-auto mb-12 text-on-surface-variant">Join the ranks of the elite. Start your transformation today with IronForge's premium facilities and world-class trainers.</p>
+<div class="flex flex-col md:flex-row gap-6 justify-center">
+<button class="bg-primary text-on-primary font-display-sm text-[24px] px-12 py-5 gold-shimmer uppercase tracking-widest">Join The Forge</button>
+<button class="border border-white text-white font-display-sm text-[24px] px-12 py-5 hover:bg-white hover:text-black transition-all uppercase tracking-widest">Book A Tour</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background border-t border-primary/50">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-grid-margin py-section-gap-desktop max-w-7xl mx-auto">
+<div class="col-span-1">
+<div class="font-display-sm text-display-sm text-primary mb-8 uppercase">IRONFORGE</div>
+<p class="text-on-surface-variant text-body-md mb-8">Redefining peak performance through luxury aesthetics and elite athletic engineering.</p>
+</div>
+<div>
+<h5 class="font-label-caps text-label-caps text-primary mb-6">EXPLORE</h5>
+<ul class="space-y-4 text-on-surface-variant font-body-md">
+<li><a class="hover:text-primary transition-opacity" href="#">Membership</a></li>
+<li><a class="hover:text-primary transition-opacity" href="#">Private Training</a></li>
+<li><a class="hover:text-primary transition-opacity" href="#">Nutrition</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-caps text-label-caps text-primary mb-6">LEGAL</h5>
+<ul class="space-y-4 text-on-surface-variant font-body-md">
+<li><a class="hover:text-primary transition-opacity" href="#">Terms of Service</a></li>
+<li><a class="hover:text-primary transition-opacity" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-caps text-label-caps text-primary mb-6">CONNECT</h5>
+<div class="flex gap-4">
+<a class="w-10 h-10 flex items-center justify-center border border-outline-variant hover:border-primary text-on-surface-variant hover:text-primary transition-all" href="#">IG</a>
+<a class="w-10 h-10 flex items-center justify-center border border-outline-variant hover:border-primary text-on-surface-variant hover:text-primary transition-all" href="#">TW</a>
+<a class="w-10 h-10 flex items-center justify-center border border-outline-variant hover:border-primary text-on-surface-variant hover:text-primary transition-all" href="#">YT</a>
+</div>
+</div>
+</div>
+<div class="px-grid-margin py-8 border-t border-outline-variant/10 text-center font-label-caps text-outline-variant">
+            © 2024 IRONFORGE FITNESS. ALL RIGHTS RESERVED.
+        </div>
+</footer>
+<script>
+        // Billing Toggle Logic
+        const toggleBtn = document.getElementById('billingToggle');
+        const toggleCircle = document.getElementById('toggleCircle');
+        let isAnnual = true;
+
+        toggleBtn.addEventListener('click', () => {
+            isAnnual = !isAnnual;
+            if (isAnnual) {
+                toggleCircle.style.transform = 'translateX(2rem)';
+            } else {
+                toggleCircle.style.transform = 'translateX(0)';
+            }
+        });
+
+        // Accordion Logic
+        document.querySelectorAll('.accordion-item button').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                const isOpen = item.classList.contains('accordion-active');
+                
+                // Close all others
+                document.querySelectorAll('.accordion-item').forEach(other => {
+                    other.classList.remove('accordion-active');
+                    other.querySelector('span:last-child').style.transform = 'rotate(0deg)';
+                });
+
+                if (!isOpen) {
+                    item.classList.add('accordion-active');
+                    button.querySelector('span:last-child').style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+    </script>
+</body></html>

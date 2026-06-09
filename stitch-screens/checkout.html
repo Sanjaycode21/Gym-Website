@@ -1,0 +1,317 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&amp;family=JetBrains+Mono:wght@500&amp;family=EB+Garamond:ital@1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .gold-shimmer:hover {
+            background: linear-gradient(45deg, #c9a84c 25%, #e6c364 50%, #c9a84c 75%);
+            background-size: 200% auto;
+            animation: shimmer 1.5s linear infinite;
+        }
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            background: url("https://grains.static.com/grain.png");
+            opacity: 0.03;
+        }
+        .gold-glow:focus {
+            box-shadow: 0 0 15px rgba(201, 168, 76, 0.3);
+            border-color: #e6c364 !important;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#2d2a23",
+                    "surface-variant": "#38342d",
+                    "on-tertiary-container": "#2e3b77",
+                    "secondary-fixed": "#ffdf92",
+                    "on-primary-fixed-variant": "#584400",
+                    "secondary-fixed-dim": "#e6c368",
+                    "primary-fixed": "#ffe08f",
+                    "on-secondary": "#3e2e00",
+                    "error": "#ffb4ab",
+                    "outline-variant": "#4d4637",
+                    "surface-container-lowest": "#100e08",
+                    "on-tertiary-fixed-variant": "#35437e",
+                    "primary-fixed-dim": "#e6c364",
+                    "error-container": "#93000a",
+                    "surface-container-low": "#1e1b15",
+                    "on-secondary-fixed": "#241a00",
+                    "surface-container": "#221f19",
+                    "background": "#16130d",
+                    "primary": "#e6c364",
+                    "surface-container-highest": "#38342d",
+                    "on-primary": "#3d2e00",
+                    "surface-bright": "#3d3931",
+                    "on-primary-container": "#503d00",
+                    "on-tertiary": "#1e2b66",
+                    "outline": "#99907e",
+                    "secondary-container": "#6f5600",
+                    "on-background": "#e9e1d7",
+                    "on-primary-fixed": "#241a00",
+                    "on-surface-variant": "#d0c5b2",
+                    "on-error": "#690005",
+                    "on-error-container": "#ffdad6",
+                    "inverse-on-surface": "#343029",
+                    "tertiary-fixed-dim": "#b9c3ff",
+                    "on-secondary-container": "#f1cd71",
+                    "tertiary-fixed": "#dde1ff",
+                    "surface-dim": "#16130d",
+                    "tertiary": "#b9c4ff",
+                    "inverse-primary": "#755b00",
+                    "secondary": "#e6c368",
+                    "surface": "#16130d",
+                    "on-tertiary-fixed": "#041451",
+                    "tertiary-container": "#9ba8eb",
+                    "on-secondary-fixed-variant": "#594400",
+                    "surface-tint": "#e6c364",
+                    "on-surface": "#e9e1d7",
+                    "primary-container": "#c9a84c",
+                    "inverse-surface": "#e9e1d7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "grid-margin": "40px",
+                    "base": "8px",
+                    "gutter": "24px",
+                    "section-gap-desktop": "120px",
+                    "section-gap-mobile": "64px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Bebas Neue"],
+                    "body-lg": ["DM Sans"],
+                    "headline-md": ["Bebas Neue"],
+                    "stats-lg": ["JetBrains Mono"],
+                    "display-sm": ["Bebas Neue"],
+                    "body-md": ["DM Sans"],
+                    "quote-italic": ["EB Garamond"],
+                    "label-caps": ["DM Sans"]
+            },
+            "fontSize": {
+                    "display-lg": ["96px", {"lineHeight": "90px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "32px", "letterSpacing": "0.02em", "fontWeight": "400"}],
+                    "stats-lg": ["40px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                    "display-sm": ["48px", {"lineHeight": "48px", "letterSpacing": "0.03em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "quote-italic": ["24px", {"lineHeight": "32px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen selection:bg-primary selection:text-on-primary">
+<div class="grain-overlay"></div>
+<!-- TopNavBar -->
+<nav class="bg-surface/40 backdrop-blur-xl dark:bg-surface/40 border-b border-outline-variant/30 docked full-width top-0 sticky flex justify-between items-center px-grid-margin w-full h-20 z-50">
+<div class="font-display-sm text-display-sm tracking-widest text-primary dark:text-primary">IRONFORGE FITNESS</div>
+<div class="hidden md:flex gap-8">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-caps text-label-caps" href="#">Home</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-caps text-label-caps" href="#">About</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-caps text-label-caps" href="#">Membership</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-caps text-label-caps" href="#">Classes</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-caps text-label-caps" href="#">Trainers</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-caps text-label-caps" href="#">Contact</a>
+</div>
+<button class="bg-primary-container text-on-primary px-6 py-2 font-display-sm text-[20px] tracking-wider gold-shimmer transition-all active:scale-95">JOIN NOW</button>
+</nav>
+<main class="max-w-7xl mx-auto px-grid-margin py-16 md:py-24">
+<!-- 4-Step Stepper -->
+<div class="mb-16">
+<div class="flex justify-between items-center max-w-3xl mx-auto relative">
+<div class="absolute top-1/2 left-0 w-full h-[1px] bg-outline-variant/30 -z-10"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-4">
+<div class="w-10 h-10 rounded-full border border-primary bg-background flex items-center justify-center text-primary font-stats-lg text-lg">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Plan</span>
+</div>
+<!-- Step 2 (Active) -->
+<div class="flex flex-col items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-stats-lg text-lg ring-4 ring-primary/20 shadow-[0_0_15px_rgba(230,195,100,0.4)]">
+                        02
+                    </div>
+<span class="font-label-caps text-label-caps text-primary">Your Details</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-4">
+<div class="w-10 h-10 rounded-full border border-outline-variant bg-surface flex items-center justify-center text-on-surface-variant font-stats-lg text-lg">
+                        03
+                    </div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Add-ons</span>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center gap-4">
+<div class="w-10 h-10 rounded-full border border-outline-variant bg-surface flex items-center justify-center text-on-surface-variant font-stats-lg text-lg">
+                        04
+                    </div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Payment</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Form Section -->
+<div class="lg:col-span-8 bg-surface-container-low p-8 md:p-12 border border-outline-variant/20 rounded-lg">
+<h1 class="font-display-sm text-display-sm text-primary mb-12">PERSONAL INFORMATION</h1>
+<form class="space-y-10">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+<!-- Full Name -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Full Name</label>
+<input class="bg-[#111111] border-none border-b border-outline/50 focus:ring-0 focus:border-primary text-on-surface font-body-md py-4 gold-glow transition-all" placeholder="ALEXANDER VANCE" type="text">
+</div>
+<!-- Email -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Email Address</label>
+<input class="bg-[#111111] border-none border-b border-outline/50 focus:ring-0 focus:border-primary text-on-surface font-body-md py-4 gold-glow transition-all" placeholder="ALEXANDER.V@FORGE.COM" type="email">
+</div>
+<!-- Phone -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Phone Number</label>
+<input class="bg-[#111111] border-none border-b border-outline/50 focus:ring-0 focus:border-primary text-on-surface font-body-md py-4 gold-glow transition-all" placeholder="+1 (555) 000-0000" type="tel">
+</div>
+<!-- DOB -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Date of Birth</label>
+<input class="bg-[#111111] border-none border-b border-outline/50 focus:ring-0 focus:border-primary text-on-surface font-body-md py-4 gold-glow transition-all uppercase" type="date">
+</div>
+<!-- Address -->
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Residential Address</label>
+<input class="bg-[#111111] border-none border-b border-outline/50 focus:ring-0 focus:border-primary text-on-surface font-body-md py-4 gold-glow transition-all" placeholder="722 ELITE DRIVE, PLATINUM DISTRICT, CA" type="text">
+</div>
+<!-- Promo Code -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Promo Code</label>
+<div class="relative">
+<input class="w-full bg-[#111111] border-none border-b border-outline/50 focus:ring-0 focus:border-primary text-on-surface font-body-md py-4 gold-glow transition-all uppercase" placeholder="ENTER CODE" type="text">
+<button class="absolute right-0 bottom-4 font-label-caps text-primary hover:text-on-surface transition-colors" type="button">APPLY</button>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-outline-variant/30 flex items-center gap-3">
+<input class="w-5 h-5 rounded bg-surface border-primary text-primary focus:ring-primary focus:ring-offset-background" id="terms" type="checkbox">
+<label class="font-body-md text-on-surface-variant text-sm" for="terms">
+                            I AGREE TO THE <a class="text-primary underline" href="#">TERMS OF SERVICE</a> AND PRIVACY POLICY.
+                        </label>
+</div>
+<div class="flex justify-between items-center pt-8">
+<button class="font-label-caps text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-sm">arrow_back</span> BACK
+                        </button>
+<button class="bg-primary text-on-primary px-12 py-4 font-display-sm text-[24px] tracking-widest gold-shimmer transition-all active:scale-95" type="submit">
+                            CONTINUE TO ADD-ONS
+                        </button>
+</div>
+</form>
+</div>
+<!-- Sidebar / Order Summary -->
+<aside class="lg:col-span-4 space-y-6">
+<div class="bg-surface-container-high border border-outline-variant/30 p-8 rounded-lg">
+<h2 class="font-display-sm text-headline-md text-on-surface mb-8 border-b border-outline-variant/30 pb-4">ORDER SUMMARY</h2>
+<div class="space-y-6">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-caps text-primary text-[10px]">CURRENT PLAN</p>
+<p class="font-headline-md text-2xl text-on-surface uppercase">IRON ELITE MEMBERSHIP</p>
+</div>
+<p class="font-stats-lg text-xl text-on-surface">$149</p>
+</div>
+<div class="space-y-3 pt-6 border-t border-outline-variant/20">
+<div class="flex justify-between font-body-md text-on-surface-variant">
+<span>REGISTRATION FEE</span>
+<span class="font-stats-lg text-sm">$49</span>
+</div>
+<div class="flex justify-between font-body-md text-on-surface-variant">
+<span>ACCESS KEY CARD</span>
+<span class="font-stats-lg text-sm">$20</span>
+</div>
+<div class="flex justify-between font-body-md text-primary italic">
+<span>PROMO DISCOUNT</span>
+<span class="font-stats-lg text-sm">-$0</span>
+</div>
+</div>
+<div class="pt-6 border-t-2 border-primary/30">
+<div class="flex justify-between items-end">
+<span class="font-display-sm text-2xl text-on-surface">TOTAL DUE TODAY</span>
+<span class="font-stats-lg text-display-sm text-primary">$218</span>
+</div>
+<p class="font-body-md text-on-surface-variant text-[10px] mt-2 italic">* MONTHLY RECURRING PAYMENT OF $149 BEGINS IN 30 DAYS</p>
+</div>
+</div>
+</div>
+<div class="relative h-64 rounded-lg overflow-hidden group">
+<img alt="Premium Training" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A moody, high-contrast close-up of heavy industrial gym weights in a luxury fitness studio. The lighting is cinematic with golden highlights reflecting off polished steel surfaces and deep black shadows. The atmosphere is intense and premium, emphasizing elite craftsmanship and physical discipline. Fine grain texture overlay adds a professional film aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7PV96otBPskyWgLMrT8T-tZenQxysbG9VGdRfA0rEFrzDR-YL4L4iQSewl2EU9nDzIzWFJUBhTufjoXCLO--uhrq2dVPcNVqxifmaGUmfyU33a0lsM_rtgoHcywE_YUR1DAuo8sn4gkB6cEHsDV7SNMjC47Pc20vutONObM1VXXhohTXVR7PP0ks-o-t81LRgarqVbSqj8KNN1X0y6rMjtmCua4djKXxMSNdk8g06v4onVqtxnlOsD1ypBTAotdsFPzkP8sbZk_FG">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent flex flex-col justify-end p-6">
+<h3 class="font-display-sm text-headline-md text-on-surface">ELEVATE YOUR REACH</h3>
+<p class="font-body-md text-primary text-sm">UNLIMITED RECOVERY LOUNGE ACCESS</p>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-background dark:bg-background border-t border-primary/50 mt-section-gap-desktop">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-grid-margin py-section-gap-mobile md:py-section-gap-desktop max-w-7xl mx-auto">
+<div class="col-span-1 md:col-span-2">
+<div class="font-display-sm text-display-sm text-primary mb-6">IRONFORGE</div>
+<p class="font-body-md text-on-surface-variant max-w-sm">
+                    DEFINING THE NEW STANDARD IN HUMAN PERFORMANCE. LUXURY MEETS RAW INTENSITY.
+                </p>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-caps text-on-surface mb-2">QUICK LINKS</h4>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-opacity" href="#">Membership</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-opacity" href="#">Private Training</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-opacity" href="#">Nutrition</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-caps text-on-surface mb-2">LEGAL</h4>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-opacity" href="#">Terms of Service</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-opacity" href="#">Privacy Policy</a>
+</div>
+</div>
+<div class="px-grid-margin py-8 border-t border-outline-variant/10 text-center">
+<p class="font-label-caps text-[10px] text-on-surface-variant tracking-[0.2em]">© 2024 IRONFORGE FITNESS. ALL RIGHTS RESERVED.</p>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for form inputs
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.querySelector('label')?.classList.add('text-primary');
+            });
+            input.addEventListener('blur', () => {
+                if(!input.value) {
+                    input.parentElement.querySelector('label')?.classList.remove('text-primary');
+                }
+            });
+        });
+    </script>
+</body></html>

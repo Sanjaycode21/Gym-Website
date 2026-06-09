@@ -1,0 +1,361 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Meet the Coaches | IronForge Fitness</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:ital,wght@0,400;0,700;1,400&amp;family=JetBrains+Mono:wght@500&amp;family=EB+Garamond:ital@1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        body {
+            background-color: #0A0A0A;
+            color: #e9e1d7;
+            overflow-x: hidden;
+        }
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        .gold-shimmer:hover {
+            background: linear-gradient(45deg, #C9A84C 0%, #ffe08f 50%, #C9A84C 100%);
+            background-size: 200% 200%;
+            animation: shimmer 1s linear infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        .line-glow {
+            background: linear-gradient(90deg, transparent 0%, #C9A84C 50%, transparent 100%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#2d2a23",
+                        "surface-variant": "#38342d",
+                        "on-tertiary-container": "#2e3b77",
+                        "secondary-fixed": "#ffdf92",
+                        "on-primary-fixed-variant": "#584400",
+                        "secondary-fixed-dim": "#e6c368",
+                        "primary-fixed": "#ffe08f",
+                        "on-secondary": "#3e2e00",
+                        "error": "#ffb4ab",
+                        "outline-variant": "#4d4637",
+                        "surface-container-lowest": "#100e08",
+                        "on-tertiary-fixed-variant": "#35437e",
+                        "primary-fixed-dim": "#e6c364",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#1e1b15",
+                        "on-secondary-fixed": "#241a00",
+                        "surface-container": "#221f19",
+                        "background": "#16130d",
+                        "primary": "#e6c364",
+                        "surface-container-highest": "#38342d",
+                        "on-primary": "#3d2e00",
+                        "surface-bright": "#3d3931",
+                        "on-primary-container": "#503d00",
+                        "on-tertiary": "#1e2b66",
+                        "outline": "#99907e",
+                        "secondary-container": "#6f5600",
+                        "on-background": "#e9e1d7",
+                        "on-primary-fixed": "#241a00",
+                        "on-surface-variant": "#d0c5b2",
+                        "on-error": "#690005",
+                        "on-error-container": "#ffdad6",
+                        "inverse-on-surface": "#343029",
+                        "tertiary-fixed-dim": "#b9c3ff",
+                        "on-secondary-container": "#f1cd71",
+                        "tertiary-fixed": "#dde1ff",
+                        "surface-dim": "#16130d",
+                        "tertiary": "#b9c4ff",
+                        "inverse-primary": "#755b00",
+                        "secondary": "#e6c368",
+                        "surface": "#16130d",
+                        "on-tertiary-fixed": "#041451",
+                        "tertiary-container": "#9ba8eb",
+                        "on-secondary-fixed-variant": "#594400",
+                        "surface-tint": "#e6c364",
+                        "on-surface": "#e9e1d7",
+                        "primary-container": "#c9a84c",
+                        "inverse-surface": "#e9e1d7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "grid-margin": "40px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "section-gap-desktop": "120px",
+                        "section-gap-mobile": "64px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Bebas Neue"],
+                        "body-lg": ["DM Sans"],
+                        "headline-md": ["Bebas Neue"],
+                        "stats-lg": ["JetBrains Mono"],
+                        "display-sm": ["Bebas Neue"],
+                        "body-md": ["DM Sans"],
+                        "quote-italic": ["EB Garamond"],
+                        "label-caps": ["DM Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["96px", { "lineHeight": "90px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "32px", "letterSpacing": "0.02em", "fontWeight": "400" }],
+                        "stats-lg": ["40px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+                        "display-sm": ["48px", { "lineHeight": "48px", "letterSpacing": "0.03em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "quote-italic": ["24px", { "lineHeight": "32px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background">
+<div class="grain-overlay"></div>
+<!-- Navigation -->
+<nav class="bg-surface/40 backdrop-blur-xl dark:bg-surface/40 docked full-width top-0 sticky border-b border-outline-variant/30 flex justify-between items-center px-grid-margin w-full h-20 z-50">
+<div class="font-display-sm text-display-sm tracking-widest text-primary dark:text-primary">IRONFORGE FITNESS</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-caps text-label-caps" href="#">Home</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-caps text-label-caps" href="#">About</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-caps text-label-caps" href="#">Membership</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-caps text-label-caps" href="#">Classes</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-caps text-label-caps" href="#">Trainers</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-label-caps text-label-caps" href="#">Contact</a>
+</div>
+<button class="bg-primary-container text-on-primary font-display-sm text-label-caps px-6 py-2 gold-shimmer transition-all duration-150 ease-in-out active:scale-95">JOIN NOW</button>
+</nav>
+<main class="min-h-screen">
+<!-- Hero Section -->
+<section class="relative pt-32 pb-20 px-grid-margin overflow-hidden">
+
+<div class="max-w-7xl mx-auto relative z-10">
+<div class="flex flex-col items-start gap-4">
+<span class="font-label-caps text-label-caps text-primary tracking-widest bg-primary/10 px-4 py-1">THE ELITE TEAM</span>
+<h1 class="font-display-lg text-display-lg text-on-surface max-w-4xl leading-tight">MEET THE <span class="text-primary italic font-quote-italic capitalize">Coaches</span></h1>
+<div class="w-24 h-1 line-glow mt-4"></div>
+</div>
+</div>
+</section>
+<!-- Trainer Grid -->
+<section class="py-section-gap-desktop px-grid-margin max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap- gutter">
+<!-- Trainer 1 -->
+<div class="group relative overflow-hidden bg-surface-container border border-outline-variant/30 h-[600px] cursor-pointer hover:border-primary/50 transition-all duration-500">
+<div class="absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-700">
+<img class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700" data-alt="A portrait of a male fitness trainer with a intense expression, wearing minimalist black athletic gear in a high-contrast industrial gym setting. The lighting is cinematic and moody, with sharp highlights on his defined physique. The aesthetic is ultra-modern and luxurious, with deep shadows and metallic gold tones reflecting the brand's elite atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsjiYXVk4_c4TMuJm4SffWthpskERIzWG_fu4gy5N_8pBSeYE27wQ8Pii1Vv3gkhJnBxguKyie5t5c1yvxUNFP7PyHYQPl4QP9aCHhVHDYlajcwaWItcHe1DJx1jBQyRPKu8nHMw2IXKX-aHwb1BhSs5i9Oh28JJKXtS8M91INR660_331PELqZIdGr1GwKRMw3f_Vrzjeb9R8huS38Lt8CEqgkrCLz9oZWQBSFxMOeHVAelWPy1Aaik6QmJjkxHXKZd0Cy9ZY9Vns">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<span class="font-label-caps text-label-caps text-primary mb-2 block tracking-widest">STRENGTH &amp; CONDITIONING</span>
+<h3 class="font-display-sm text-display-sm text-on-surface">MARCUS VANCE</h3>
+<p class="font-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-500 mt-4 border-t border-primary/20 pt-4">Elite level powerlifting coach with 12+ years experience in professional sports performance.</p>
+</div>
+</div>
+<!-- Trainer 2 -->
+<div class="group relative overflow-hidden bg-surface-container border border-outline-variant/30 h-[600px] cursor-pointer hover:border-primary/50 transition-all duration-500">
+<div class="absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-700">
+<img class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700" data-alt="A striking portrait of a female trainer in a professional gym, illuminated by golden hour lighting coming through large industrial windows. She is wearing sleek black athletic wear, and the mood is determined and authoritative. The background shows blurred high-end gym equipment, creating an editorial, luxury fitness magazine aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEkr3yICD7yBDvTNxGklbCum24uXa-Ur1sFqkn2LCsEpWHtBF2971eLTece4mKZgCQkzPk7sscPhJgecYOJcMJsDRbF3nZR_fQNWHZbtWqS6ILWv-KU7e3ojTwB51myzoWxe7etSavDMznzgpMuNWCBzGMgVc-peHgz-870B4bww2l6vlDvJcVOJXHH0OgMVBWyFJeh5KNLDkjpn0czoSh6LuWpjOaOpOvo-P2p6ZH3Wb0N6H2bmLROIybWGjNJoGKY2sC7aj9MKur">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<span class="font-label-caps text-label-caps text-primary mb-2 block tracking-widest">HYPERTROPHY SPECIALIST</span>
+<h3 class="font-display-sm text-display-sm text-on-surface">ELARA JENKINS</h3>
+<p class="font-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-500 mt-4 border-t border-primary/20 pt-4">IFBB Pro specializing in body composition transformation and metabolic health optimization.</p>
+</div>
+</div>
+<!-- Trainer 3 -->
+<div class="group relative overflow-hidden bg-surface-container border border-outline-variant/30 h-[600px] cursor-pointer hover:border-primary/50 transition-all duration-500">
+<div class="absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-700">
+<img class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700" data-alt="A male trainer with an athletic build standing in a dark, atmospheric studio space. A single overhead light source creates dramatic contrast, highlighting muscular texture and a focused expression. The color palette is restricted to deep blacks and subtle gold accents on his equipment. The style is raw, intense, and high-performance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu90Ol4rXkzvvGsvVmOVNnN_AQ-wIVfXsTv_J3Yk9Bctpjxyy8ucNSOuxDyvRCwuh1QmNnBxsAcUFVURw7d0NcwZtCciflIeYz67ijcdk2i2A5Tht0Tp4AeQ30JiHHLacH3JGn7Pc7XdIRnCyszsvEX3jgPcuhp-oBK8GRMylrtrxoaQXy01u4zNYxiyURxDz074jhNQGLhMqXbnII4WuIDBbuE86jbHETNyFFMSzqRUDoD7jiiyQv4tUBawk6b1ZVCZkUdQ_gh8Cr">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<span class="font-label-caps text-label-caps text-primary mb-2 block tracking-widest">COMBAT PERFORMANCE</span>
+<h3 class="font-display-sm text-display-sm text-on-surface">DR. DAVID CHOW</h3>
+<p class="font-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-500 mt-4 border-t border-primary/20 pt-4">Former professional fighter and PhD in Sports Biomechanics focused on explosive power.</p>
+</div>
+</div>
+<!-- Trainer 4 -->
+<div class="group relative overflow-hidden bg-surface-container border border-outline-variant/30 h-[600px] cursor-pointer hover:border-primary/50 transition-all duration-500">
+<div class="absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-700">
+<img class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700" data-alt="A portrait of a serene but intense female trainer in a minimalist yoga and mobility studio. Soft, diffused lighting accentuates her form, while the overall aesthetic is high-contrast black and white with a touch of gold texture in the background. The mood is one of disciplined calm and high-performance flexibility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5X4OLeaz9WDNeMCT4F8e4XDKD2T_DwB8ryVowkJXOoeFBMtGDFSCQxaw1Ep2ilwAAHoaVIVhYcq8-8CpdzUy49ySiN2sSBaOuFt7hVL1KKluMrgn6XSqIoBz-Hhs0yuHdjxD37yX8UeUXF5ZzY8VsdvSxRxiok8bm8Xo0NMChOH4ramHdGb8AP6C80bB-Kc4ylvH-ArH3cNsEeevhIsix21j8WTL1dUH9Aq3wmIsvvGVwW0Rad6MExHawyLaaTv85v9hgvXOg-WKe">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<span class="font-label-caps text-label-caps text-primary mb-2 block tracking-widest">MOBILITY &amp; RECOVERY</span>
+<h3 class="font-display-sm text-display-sm text-on-surface">SARAH NIGHTINGALE</h3>
+<p class="font-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-500 mt-4 border-t border-primary/20 pt-4">Expert in restorative movement and elite-level recovery protocols for high-volume athletes.</p>
+</div>
+</div>
+<!-- Trainer 5 -->
+<div class="group relative overflow-hidden bg-surface-container border border-outline-variant/30 h-[600px] cursor-pointer hover:border-primary/50 transition-all duration-500">
+<div class="absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-700">
+<img class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700" data-alt="A rugged male trainer in a high-end garage gym environment. The lighting is low-key, emphasizing grit and physical discipline. He is holding a heavy leather medicine ball, and the texture of the equipment matches the grainy, cinematic quality of the scene. The color palette centers on charcoal grey, gold, and deep black." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-ESeVWwa3kYWi58hnSPxbgKBO_ShArKZHkxjsDUZqP5LraPnvj46IciA3HMCA5T1jtwNgqF7Dz6K76UKr-fFehGRSlBWOTNWLW9KbT8aNqKrnj1tJbSMbTPSC31e0ZvbDlDOdwgbgZaIJZIxip_60DP-mSl4fvOtaWGe3Kzn2NB-OAqtRqnjQUkxO2EthRpnE8t8yfOSIKZuKO9RhkFl6BzBxrTB_xLaDiH-ZGsYlN4dotZ-1cJh16eE9GIYClf7DnOiJZmzEvguV">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<span class="font-label-caps text-label-caps text-primary mb-2 block tracking-widest">FUNCTIONAL INTENSITY</span>
+<h3 class="font-display-sm text-display-sm text-on-surface">JAXSON REED</h3>
+<p class="font-body-md text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-500 mt-4 border-t border-primary/20 pt-4">Specializing in metabolic conditioning and brutal functional hypertrophy blocks.</p>
+</div>
+</div>
+<!-- Trainer 6 -->
+<div class="group relative overflow-hidden bg-surface-container border border-outline-variant/30 h-[600px] cursor-pointer hover:border-primary/50 transition-all duration-500 border-primary/40 shadow-[0_0_30px_rgba(201,168,76,0.1)]">
+<div class="absolute inset-0 group-hover:scale-110 transition-transform duration-1000">
+<img class="w-full h-full object-cover" data-alt="Close up editorial portrait of a female trainer with a powerful, composed expression. Dramatic side lighting highlights her athletic features and the texture of a premium black gym top. The image is sophisticated and modern, fitting a high-performance luxury brand. Hints of gold light reflect off the equipment in the blurred background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIr9Rw2wtCwtDT9p9INkogrClVrSgzBAygac1zCu-zCrmUZbvMDByRkbrWGaVwy_UsHwySOq03MtU8AnuGlzwrQCTwWhj9_eXEBHB71irrsGwNauTngJW7hwFX6R4p3ITpn6SQOfZueYum_9SeTWiBo5al1J8eFp05fGuVElGoWGNXIlDLMvCvQupWt-K96v0pDP-E1vFfxgDoWPqbC_zdlE5k0CuDg1NeZOPa-CPmArDDBqJo1UHpgE4dUIA2OENR6DFwYugfsQ4W">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-90"></div>
+<div class="absolute top-4 right-4 bg-primary text-on-primary font-label-caps text-[10px] px-3 py-1 tracking-widest z-20">FEATURED COACH</div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<span class="font-label-caps text-label-caps text-primary mb-2 block tracking-widest">MASTER TRAINER</span>
+<h3 class="font-display-sm text-display-sm text-on-surface">SOFIA VALENTINE</h3>
+<p class="font-body-md text-on-surface-variant mt-4 border-t border-primary/20 pt-4">Founder of the IronForge Method. 15 years leading transformation for elite clientele.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Expanded Profile View -->
+<section class="py-section-gap-desktop bg-surface-container-low border-y border-outline-variant/30">
+<div class="max-w-7xl mx-auto px-grid-margin grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<div class="lg:col-span-5 relative">
+<div class="aspect-[4/5] bg-surface-container border border-outline-variant/20 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A large, detailed portrait of a professional fitness coach standing confidently in a luxury training facility. The background features high-end equipment like matte black power racks and leather benches. The lighting is editorial and sharp, highlighting the coach's focused expression and athletic silhouette. The atmosphere is one of serious commitment and high-end luxury athletics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-CbVBayZM34llS6dMOi1SSSoAMHFNDlMx3PK5rSF8SFHA3XA9J33jmCpWgrLD2tjnJ6iVPmcODqzYRQzJQsF6jWjEOjkbJ24JgSIhhZOLXQflsnHzEGEdEyylKUJf3SeleLvkZVZoPyKiyrTswIcVEjHAk7d1uDmvFawh3bApDmn-0m8ZsmCwwJvPTKmcuAhUVUnBF05nUqvxKTTeib4uN6b6FpfMY2hhicz1N7VU8SRjfY0SCIdFjV-BjCbk6gxsfA9iaNFY1hBZ">
+</div>
+<div class="absolute -bottom-8 -right-8 w-48 h-48 border border-primary/20 -z-10 bg-primary/5"></div>
+</div>
+<div class="lg:col-span-7 flex flex-col gap-8">
+<div>
+<span class="font-label-caps text-label-caps text-primary tracking-widest mb-4 block">EXPERT SPOTLIGHT</span>
+<h2 class="font-display-sm text-display-sm text-on-surface mb-2">MARCUS VANCE</h2>
+<p class="font-quote-italic text-quote-italic text-primary/80 italic">"Strength is the foundation of every human endeavor."</p>
+</div>
+<div class="flex flex-col gap-6">
+<div class="space-y-4">
+<h4 class="font-label-caps text-label-caps text-on-surface border-b border-outline-variant/30 pb-2">BIOGRAPHY</h4>
+<p class="font-body-lg text-on-surface-variant leading-relaxed">
+                                Marcus Vance is more than a coach; he is a specialist in the science of human performance. With a background in collegiate athletics and a Master's in Exercise Physiology, Marcus has dedicated over a decade to refining the training protocols used by professional powerlifters and executive athletes alike. His methodology combines brutal foundational strength work with modern data-driven recovery.
+                            </p>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-caps text-label-caps text-on-surface border-b border-outline-variant/30 pb-2">CERTIFICATIONS</h4>
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary/10 text-primary border border-primary/30 px-3 py-1 font-label-caps text-[10px] tracking-wider uppercase">NSCA Certified Strength &amp; Conditioning Specialist</span>
+<span class="bg-primary/10 text-primary border border-primary/30 px-3 py-1 font-label-caps text-[10px] tracking-wider uppercase">NASM Performance Enhancement Specialist</span>
+<span class="bg-primary/10 text-primary border border-primary/30 px-3 py-1 font-label-caps text-[10px] tracking-wider uppercase">Precision Nutrition L2</span>
+<span class="bg-primary/10 text-primary border border-primary/30 px-3 py-1 font-label-caps text-[10px] tracking-wider uppercase">Westside Barbell Certified</span>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-caps text-label-caps text-on-surface border-b border-outline-variant/30 pb-2">AVAILABILITY SCHEDULE</h4>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="p-3 border border-outline-variant/20 bg-surface text-center">
+<span class="block font-label-caps text-on-surface-variant text-[10px]">MON-WED</span>
+<span class="font-stats-lg text-[20px] text-primary">06:00 - 12:00</span>
+</div>
+<div class="p-3 border border-outline-variant/20 bg-surface text-center">
+<span class="block font-label-caps text-on-surface-variant text-[10px]">THU-FRI</span>
+<span class="font-stats-lg text-[20px] text-primary">14:00 - 20:00</span>
+</div>
+<div class="p-3 border border-outline-variant/20 bg-surface text-center">
+<span class="block font-label-caps text-on-surface-variant text-[10px]">SATURDAY</span>
+<span class="font-stats-lg text-[20px] text-primary">08:00 - 14:00</span>
+</div>
+<div class="p-3 border border-outline-variant/20 bg-surface text-center opacity-50">
+<span class="block font-label-caps text-on-surface-variant text-[10px]">SUNDAY</span>
+<span class="font-stats-lg text-[20px]">CLOSED</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-6">
+<button class="bg-primary text-on-primary font-display-sm text-headline-md px-10 py-4 gold-shimmer shadow-lg flex items-center gap-4 group">
+                            BOOK PT SESSION
+                            <span class="material-symbols-outlined transform group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-section-gap-desktop px-grid-margin relative">
+<div class="max-w-4xl mx-auto text-center flex flex-col items-center gap-8">
+<h2 class="font-display-sm text-display-sm text-on-surface">READY TO REFORGE YOURSELF?</h2>
+<p class="font-body-lg text-on-surface-variant">Our elite coaching roster is currently accepting new private clients. Spaces are limited to ensure maximum attention to every detail of your performance journey.</p>
+<div class="flex gap-6 mt-4">
+<button class="bg-primary text-on-primary font-display-sm text-label-caps px-10 py-3 gold-shimmer">CONSULTATION</button>
+<button class="border border-primary text-primary font-display-sm text-label-caps px-10 py-3 hover:bg-primary hover:text-on-primary transition-colors">VIEW PACKAGES</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background dark:bg-background border-t border-primary/50 py-section-gap-mobile md:py-section-gap-desktop">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-grid-margin max-w-7xl mx-auto">
+<div class="md:col-span-2">
+<div class="font-display-sm text-display-sm text-primary mb-6">IRONFORGE FITNESS</div>
+<p class="font-body-md text-on-surface-variant max-w-sm mb-8">The standard for high-performance luxury fitness. We provide the tools, the atmosphere, and the expertise. You provide the discipline.</p>
+<div class="flex gap-4">
+<a class="text-primary hover:opacity-80 transition-opacity" href="#"><span class="material-symbols-outlined">share</span></a>
+<a class="text-primary hover:opacity-80 transition-opacity" href="#"><span class="material-symbols-outlined">photo_camera</span></a>
+<a class="text-primary hover:opacity-80 transition-opacity" href="#"><span class="material-symbols-outlined">play_circle</span></a>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-caps text-label-caps text-primary">SERVICES</h4>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-opacity" href="#">Membership</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-opacity" href="#">Private Training</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-opacity" href="#">Nutrition</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-caps text-label-caps text-primary">LEGAL</h4>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-opacity" href="#">Terms of Service</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-opacity" href="#">Privacy Policy</a>
+</div>
+</div>
+<div class="px-grid-margin max-w-7xl mx-auto mt-20 pt-8 border-t border-outline-variant/20">
+<p class="font-label-caps text-[10px] text-on-surface-variant text-center">© 2024 IRONFORGE FITNESS. ALL RIGHTS RESERVED.</p>
+</div>
+</footer>
+<script>
+        // Simple intersection observer for reveal animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section > div').forEach(el => {
+            el.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
+        });
+    </script>
+</body></html>

@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0A0A0A;
+  --color-background-stitch: #16130d;
+  --color-foreground: #e9e1d7;
+  --color-primary: #e6c364;
+  --color-secondary: #e6c368;
+  --color-tertiary: #b9c4ff;
+  --color-gold-accent: #C9A84C;
+  --color-gold-light: #E8C56A;
+  --color-gold-muted: #A0844A;
+
+  --color-white-primary: #F5F5F5;
+  --color-white-secondary: #BDBDBD;
+  --color-white-muted: #757575;
+
+  --color-surface: #1A1A1A;
+  --color-surface-stitch: #16130d;
+  --color-surface-container: #221f19;
+  --color-surface-container-low: #1e1b15;
+  --color-surface-container-lowest: #100e08;
+  --color-surface-container-high: #2d2a23;
+  --color-surface-container-highest: #38342d;
+  --color-surface-variant: #38342d;
+
+  --color-on-background: #e9e1d7;
+  --color-on-surface: #e9e1d7;
+  --color-on-surface-variant: #d0c5b2;
+  --color-outline: #99907e;
+  --color-outline-variant: #4d4637;
+  --color-error: #ffb4ab;
+
+  --font-bebas: var(--font-bebas-neue), sans-serif;
+  --font-dm-sans: var(--font-dm-sans), sans-serif;
+  --font-cormorant: var(--font-cormorant), serif;
+  --font-mono: var(--font-mono), monospace;
+
+  --spacing-grid-margin: 40px;
+  --spacing-base: 8px;
+  --spacing-gutter: 24px;
+  --spacing-section-gap-desktop: 120px;
+  --spacing-section-gap-mobile: 64px;
+
+  --shadow-gold-glow: 0 0 15px rgba(201, 168, 76, 0.3);
+  --shadow-card-hover: 0 0 30px rgba(201, 168, 76, 0.15);
+  --shadow-gold-glow-active: 0 0 15px rgba(230, 195, 100, 0.4);
+
+  --animate-shimmer: shimmer-effect 1.5s infinite linear;
+  --animate-fade-up: fadeUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes shimmer-effect {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Base custom styles */
+body {
+  background-color: #0A0A0A;
+  color: #e9e1d7;
+  font-family: var(--font-dm-sans), sans-serif;
+}
+
+/* Film grain effect */
+.grain-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://www.transparenttextures.com/patterns/60-lines.png");
+  opacity: 0.03;
+  z-index: 9999;
+}
+
+/* Gold shimmer hover effect */
+.gold-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.gold-shimmer:hover {
+  background: linear-gradient(135deg, #c9a84c 0%, #ffe08f 50%, #c9a84c 100%);
+  background-size: 200% 200%;
+  animation: shimmer-effect 1.5s infinite linear;
+}
+
+/* Gold divider with side fading */
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #c9a84c 50%, transparent 100%);
+}
+
+.line-glow {
+  background: linear-gradient(90deg, transparent 0%, #c9a84c 50%, transparent 100%);
+  box-shadow: 0 0 10px rgba(201, 168, 76, 0.5);
+}
+
+/* Accordion max-height transitions */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.accordion-active .accordion-content {
+  max-height: 500px;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2A2A2A;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c9a84c;
+}

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 // Retrieve current member's subscription details
 export async function GET(req: NextRequest) {
   const sessionCookie = req.cookies.get("session_user");

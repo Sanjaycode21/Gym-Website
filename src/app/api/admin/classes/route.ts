@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 // Create class
 export async function POST(req: NextRequest) {
   const sessionCookie = req.cookies.get("session_user");

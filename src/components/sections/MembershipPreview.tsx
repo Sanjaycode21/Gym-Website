@@ -7,13 +7,19 @@ import { membershipPlans } from "@/lib/mockData";
 import SectionHeading from "../ui/SectionHeading";
 import PlanCard from "../ui/PlanCard";
 import ScrollReveal from "../ui/ScrollReveal";
+import { useAuth } from "@/components/providers/AuthProvider";
 
 export default function MembershipPreview() {
   const [isAnnual, setIsAnnual] = useState(true);
   const router = useRouter();
+  const { user } = useAuth();
 
   const handleSelectPlan = (slug: string) => {
-    router.push(`/membership/checkout?plan=${slug}&billing=${isAnnual ? "annual" : "monthly"}`);
+    if (user) {
+      router.push(`/checkout?plan=${slug}&billing=${isAnnual ? "annual" : "monthly"}`);
+    } else {
+      router.push(`/login?redirect=/checkout?plan=${slug}&billing=${isAnnual ? "annual" : "monthly"}`);
+    }
   };
 
   return (

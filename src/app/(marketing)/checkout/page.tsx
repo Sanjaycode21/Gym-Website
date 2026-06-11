@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { CheckCircle, ArrowRight, CreditCard, Lock, ShieldCheck } from "lucide-react";
+import { CheckCircle, ArrowRight, CreditCard, Lock, ShieldCheck, Loader2 } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { useAuth } from "@/components/providers/AuthProvider";
 
 const steps = [
   { label: "Plan", done: true },
@@ -20,9 +22,25 @@ const addOns = [
   { id: "parking", label: "Parking Pass", price: 200 },
 ];
 
-export default function CheckoutPage() {
+const planDetails = {
+  starter: { name: "STARTER", price: 999, slug: "starter", tier: "BASIC ACCESS" },
+  pro: { name: "PRO", price: 1799, slug: "pro", tier: "FULL EXPERIENCE" },
+  elite: { name: "ELITE", price: 2999, slug: "elite", tier: "VIP STATUS" },
+};
+
+function CheckoutContent() {
+  const { user, loading, refreshSession } = useAuth();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const planSlug = searchParams.get("plan") || "pro";
+  const plan = planDetails[planSlug as keyof typeof planDetails] || planDetails.pro;
+
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
+  const [purchasing, setPurchasing] = useState(false);
+  const [purchased, setPurchased] = useState(false);
+  const [purchaseError, setPurchaseError] = useState<string | null>(null);
+  
   const [form, setForm] = useState({
     fullName: "",
     email: "",
@@ -32,7 +50,25 @@ export default function CheckoutPage() {
     emergencyPhone: "",
   });
 
-  const basePrice = 1799;
+  // Prefill details if user logged in
+  useEffect(() => {
+    if (user) {
+      setForm((p) => ({
+        ...p,
+        fullName: user.name || "",
+        email: user.email || "",
+      }));
+    }
+  }, [user]);
+
+  // Guest Auth Gate redirect
+  useEffect(() => {
+    if (!loading && !user) {
+      router.replace(`/login?redirect=/checkout?plan=${planSlug}`);
+    }
+  }, [user, loading, planSlug, router]);
+
+  const basePrice = plan.price;
   const addOnTotal = addOns
     .filter((a) => selectedAddOns.includes(a.id))
     .reduce((sum, a) => sum + a.price, 0);
@@ -44,9 +80,50 @@ export default function CheckoutPage() {
     );
   };
 
+  const handleCompletePurchase = async () => {
+    if (!user) {
+      setPurchaseError("Please log in or register to complete your purchase.");
+      return;
+    }
+
+    setPurchasing(true);
+    setPurchaseError(null);
+    try {
+      const res = await fetch("/api/membership", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "upgrade", planSlug: plan.slug }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setPurchased(true);
+        // Refresh session context to immediately sync active membership state
+        await refreshSession();
+        setTimeout(() => router.push("/dashboard"), 2000);
+      } else {
+        setPurchaseError(data.error || "Purchase failed. Please try again.");
+      }
+    } catch (err) {
+      setPurchaseError("Network error. Please try again.");
+    } finally {
+      setPurchasing(false);
+    }
+  };
+
+  if (loading || !user) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[400px] gap-3 text-primary">
+        <div className="w-8 h-8 border-3 border-primary border-t-transparent rounded-full animate-spin"></div>
+        <span className="font-dm-sans text-xs tracking-widest uppercase">
+          Verifying Session...
+        </span>
+      </div>
+    );
+  }
+
   return (
     <main className="max-w-7xl mx-auto px-10 py-16 md:py-28">
-      {/* ─── Stepper ─── */}
+      {/* Stepper */}
       <div className="mb-16">
         <div className="flex justify-between items-center max-w-3xl mx-auto relative">
           <div className="absolute top-5 left-0 w-full h-[1px] bg-[#4d4637]/30 -z-10" />
@@ -77,7 +154,7 @@ export default function CheckoutPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        {/* ─── Main Form / Add-ons Panel ─── */}
+        {/* Main Form / Add-ons Panel */}
         <div className="lg:col-span-8 bg-[#1e1b15] p-8 md:p-12 border border-[#4d4637]/20 rounded-lg">
           {currentStep === 1 && (
             <motion.div
@@ -225,78 +302,118 @@ export default function CheckoutPage() {
             )}
             <button
               type="button"
+              disabled={purchasing || purchased}
               onClick={() => {
-                if (currentStep < 3) setCurrentStep((s) => s + 1);
+                if (currentStep < 3) {
+                  setCurrentStep((s) => s + 1);
+                } else {
+                  handleCompletePurchase();
+                }
               }}
-              className="flex items-center gap-3 bg-[#e6c364] text-[#3d2e00] font-[family-name:var(--font-bebas-neue)] text-xl px-10 py-4 gold-shimmer tracking-widest uppercase transition-all hover:scale-[1.02] active:scale-95 cursor-pointer"
+              className="flex items-center gap-3 bg-[#e6c364] text-[#3d2e00] font-[family-name:var(--font-bebas-neue)] text-xl px-10 py-4 gold-shimmer tracking-widest uppercase transition-all hover:scale-[1.02] active:scale-95 cursor-pointer disabled:opacity-60"
             >
-              {currentStep === 3 ? "Complete Purchase" : "Continue"}
-              <ArrowRight size={18} />
+              {purchasing ? (
+                <><Loader2 size={18} className="animate-spin" /> PROCESSING...</>
+              ) : currentStep === 3 ? (
+                <>COMPLETE PURCHASE <ArrowRight size={18} /></>
+              ) : (
+                <>CONTINUE <ArrowRight size={18} /></>
+              )}
             </button>
           </div>
         </div>
 
-        {/* ─── Order Summary ─── */}
-        <ScrollReveal className="lg:col-span-4" delay={0.1}>
-          <div className="bg-[#1e1b15] border border-[#4d4637]/20 rounded-lg p-8 sticky top-28">
-            <h3 className="font-[family-name:var(--font-bebas-neue)] text-2xl tracking-wider mb-8 pb-4 border-b border-[#4d4637]/30">
-              ORDER SUMMARY
-            </h3>
-
-            <div className="space-y-4 mb-6">
-              <div className="flex justify-between items-center">
-                <span className="font-[family-name:var(--font-dm-sans)] text-sm text-[#d0c5b2]">PRO Membership</span>
-                <span className="font-[family-name:var(--font-mono)] font-medium">₹{basePrice.toLocaleString()}</span>
-              </div>
-              <span className="font-[family-name:var(--font-dm-sans)] text-[10px] font-bold uppercase tracking-[0.1em] text-[#e6c364] bg-[#e6c364]/10 px-2 py-1 w-fit">
-                FULL EXPERIENCE
-              </span>
-
-              {selectedAddOns.length > 0 && (
-                <div className="pt-4 border-t border-[#4d4637]/20 space-y-2">
-                  {addOns
-                    .filter((a) => selectedAddOns.includes(a.id))
-                    .map((a) => (
-                      <div key={a.id} className="flex justify-between items-center">
-                        <span className="font-[family-name:var(--font-dm-sans)] text-xs text-[#99907e]">{a.label}</span>
-                        <span className="font-[family-name:var(--font-mono)] text-sm text-[#e6c364]">+₹{a.price}</span>
-                      </div>
-                    ))}
-                </div>
-              )}
+        {/* Order Summary & Notifications */}
+        <div className="lg:col-span-4 space-y-6">
+          {purchaseError && (
+            <div className="bg-red-900/20 border border-red-500/40 text-red-400 px-4 py-3 rounded-sm font-dm-sans text-sm flex items-center gap-3">
+              <ShieldCheck size={16} className="shrink-0" />
+              <span>{purchaseError}</span>
             </div>
+          )}
+          {purchased && (
+            <div className="bg-green-900/20 border border-[#e6c364]/40 text-[#e6c364] px-4 py-3 rounded-sm font-dm-sans text-sm flex items-center gap-3">
+              <CheckCircle size={16} className="shrink-0" />
+              <span>🎉 Membership activated! Redirecting to your dashboard...</span>
+            </div>
+          )}
 
-            <div className="pt-6 border-t border-[#4d4637]/30">
-              <div className="flex justify-between items-baseline mb-8">
-                <span className="font-[family-name:var(--font-dm-sans)] text-xs font-bold uppercase tracking-[0.1em] text-[#99907e]">MONTHLY TOTAL</span>
-                <motion.span
-                  key={total}
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="font-[family-name:var(--font-mono)] text-3xl font-medium text-[#e6c364]"
-                >
-                  ₹{total.toLocaleString()}
-                </motion.span>
+          <ScrollReveal delay={0.1}>
+            <div className="bg-[#1e1b15] border border-[#4d4637]/20 rounded-lg p-8 sticky top-28">
+              <h3 className="font-[family-name:var(--font-bebas-neue)] text-2xl tracking-wider mb-8 pb-4 border-b border-[#4d4637]/30">
+                ORDER SUMMARY
+              </h3>
+
+              <div className="space-y-4 mb-6">
+                <div className="flex justify-between items-center">
+                  <span className="font-[family-name:var(--font-dm-sans)] text-sm text-[#d0c5b2]">{plan.name} Membership</span>
+                  <span className="font-[family-name:var(--font-mono)] font-medium">₹{basePrice.toLocaleString()}</span>
+                </div>
+                <span className="font-[family-name:var(--font-dm-sans)] text-[10px] font-bold uppercase tracking-[0.1em] text-[#e6c364] bg-[#e6c364]/10 px-2 py-1 w-fit">
+                  {plan.tier}
+                </span>
+
+                {selectedAddOns.length > 0 && (
+                  <div className="pt-4 border-t border-[#4d4637]/20 space-y-2">
+                    {addOns
+                      .filter((a) => selectedAddOns.includes(a.id))
+                      .map((a) => (
+                        <div key={a.id} className="flex justify-between items-center">
+                          <span className="font-[family-name:var(--font-dm-sans)] text-xs text-[#99907e]">{a.label}</span>
+                          <span className="font-[family-name:var(--font-mono)] text-sm text-[#e6c364]">+₹{a.price}</span>
+                        </div>
+                      ))}
+                  </div>
+                )}
               </div>
 
-              <div className="space-y-3">
-                <div className="flex items-center gap-2 text-[#99907e]">
-                  <ShieldCheck size={14} className="text-[#e6c364]" />
-                  <span className="font-[family-name:var(--font-dm-sans)] text-xs">30-day money-back guarantee</span>
+              <div className="pt-6 border-t border-[#4d4637]/30">
+                <div className="flex justify-between items-baseline mb-8">
+                  <span className="font-[family-name:var(--font-dm-sans)] text-xs font-bold uppercase tracking-[0.1em] text-[#99907e]">MONTHLY TOTAL</span>
+                  <motion.span
+                    key={total}
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="font-[family-name:var(--font-mono)] text-3xl font-medium text-[#e6c364]"
+                  >
+                    ₹{total.toLocaleString()}
+                  </motion.span>
                 </div>
-                <div className="flex items-center gap-2 text-[#99907e]">
-                  <CreditCard size={14} className="text-[#e6c364]" />
-                  <span className="font-[family-name:var(--font-dm-sans)] text-xs">All major cards accepted</span>
-                </div>
-                <div className="flex items-center gap-2 text-[#99907e]">
-                  <Lock size={14} className="text-[#e6c364]" />
-                  <span className="font-[family-name:var(--font-dm-sans)] text-xs">Cancel anytime, no hidden fees</span>
+
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 text-[#99907e]">
+                    <ShieldCheck size={14} className="text-[#e6c364]" />
+                    <span className="font-[family-name:var(--font-dm-sans)] text-xs">30-day money-back guarantee</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[#99907e]">
+                    <CreditCard size={14} className="text-[#e6c364]" />
+                    <span className="font-[family-name:var(--font-dm-sans)] text-xs">All major cards accepted</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[#99907e]">
+                    <Lock size={14} className="text-[#e6c364]" />
+                    <span className="font-[family-name:var(--font-dm-sans)] text-xs">Cancel anytime, no hidden fees</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </ScrollReveal>
+          </ScrollReveal>
+        </div>
       </div>
     </main>
+  );
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-[#0A0A0A] flex flex-col justify-center items-center text-primary">
+          <div className="w-8 h-8 border-3 border-primary border-t-transparent rounded-full animate-spin"></div>
+          <span className="font-dm-sans text-xs tracking-widest uppercase mt-4">Loading Checkout Details...</span>
+        </div>
+      }
+    >
+      <CheckoutContent />
+    </Suspense>
   );
 }

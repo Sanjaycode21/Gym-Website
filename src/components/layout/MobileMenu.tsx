@@ -2,9 +2,12 @@
 
 import React, { useEffect } from "react";
 import Link from "next/link";
-import { X } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { X, LogOut, LayoutDashboard, Calendar, User as UserIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import GoldButton from "../ui/GoldButton";
+import { useAuth } from "@/components/providers/AuthProvider";
+import Logo from "@/components/ui/Logo";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -14,7 +17,7 @@ interface MobileMenuProps {
 
 const menuLinks = [
   { label: "Home", href: "/" },
-  { label: "About", href: "#about" },
+  { label: "About", href: "/#about" },
   { label: "Membership", href: "/membership" },
   { label: "Classes", href: "/classes" },
   { label: "Trainers", href: "/trainers" },
@@ -22,6 +25,9 @@ const menuLinks = [
 ];
 
 export default function MobileMenu({ isOpen, onClose, activePath = "" }: MobileMenuProps) {
+  const { user, logout } = useAuth();
+  const router = useRouter();
+
   // Lock scroll on body when open
   useEffect(() => {
     if (isOpen) {
@@ -35,6 +41,12 @@ export default function MobileMenu({ isOpen, onClose, activePath = "" }: MobileM
   }, [isOpen]);
 
   if (!isOpen) return null;
+
+  const handleLogout = async () => {
+    await logout();
+    onClose();
+    router.push("/");
+  };
 
   const containerVariants = {
     hidden: { opacity: 0, x: "100%" },
@@ -70,13 +82,13 @@ export default function MobileMenu({ isOpen, onClose, activePath = "" }: MobileM
       animate="visible"
       exit="exit"
       variants={containerVariants}
-      className="fixed inset-0 z-[100] bg-background-stitch/98 backdrop-blur-lg flex flex-col justify-between p-8 md:hidden w-screen h-screen overflow-hidden"
+      className="fixed inset-0 z-[100] bg-background-stitch/98 backdrop-blur-lg flex flex-col justify-between p-8 w-screen h-screen overflow-y-auto"
     >
       {/* Header Row */}
       <div className="flex justify-between items-center w-full">
-        <div className="font-bebas text-[28px] tracking-widest text-primary">
-          IRONFORGE
-        </div>
+        <Link href="/" onClick={onClose} className="hover:opacity-90 transition-opacity">
+          <Logo textSize="text-2xl" iconSize={26} />
+        </Link>
         <button
           onClick={onClose}
           className="text-on-surface hover:text-primary transition-colors p-2 cursor-pointer focus:outline-none"
@@ -87,7 +99,7 @@ export default function MobileMenu({ isOpen, onClose, activePath = "" }: MobileM
       </div>
 
       {/* Nav Links */}
-      <nav className="flex flex-col gap-6 my-auto text-left pl-4">
+      <nav className="flex flex-col gap-5 my-auto text-left pl-4 pt-8 pb-8">
         {menuLinks.map((link) => {
           const isActive = activePath === link.href;
           return (
@@ -95,7 +107,7 @@ export default function MobileMenu({ isOpen, onClose, activePath = "" }: MobileM
               <Link
                 href={link.href}
                 onClick={onClose}
-                className={`font-bebas text-4xl tracking-widest uppercase transition-colors duration-300 block ${
+                className={`font-bebas text-3xl tracking-widest uppercase transition-colors duration-300 block ${
                   isActive ? "text-primary font-bold" : "text-on-surface-variant hover:text-primary"
                 }`}
               >
@@ -104,16 +116,65 @@ export default function MobileMenu({ isOpen, onClose, activePath = "" }: MobileM
             </motion.div>
           );
         })}
+
+        {user && (
+          <>
+            <div className="border-t border-[#4d4637]/20 my-2"></div>
+            <motion.div variants={linkVariants}>
+              <Link
+                href="/dashboard"
+                onClick={onClose}
+                className="font-bebas text-2xl tracking-widest uppercase text-on-surface-variant hover:text-primary flex items-center gap-2"
+              >
+                <LayoutDashboard size={18} /> Dashboard
+              </Link>
+            </motion.div>
+            <motion.div variants={linkVariants}>
+              <Link
+                href="/dashboard#bookings"
+                onClick={onClose}
+                className="font-bebas text-2xl tracking-widest uppercase text-on-surface-variant hover:text-primary flex items-center gap-2"
+              >
+                <Calendar size={18} /> My Bookings
+              </Link>
+            </motion.div>
+            <motion.div variants={linkVariants}>
+              <Link
+                href="/dashboard#profile"
+                onClick={onClose}
+                className="font-bebas text-2xl tracking-widest uppercase text-on-surface-variant hover:text-primary flex items-center gap-2"
+              >
+                <UserIcon size={18} /> Profile
+              </Link>
+            </motion.div>
+          </>
+        )}
       </nav>
 
       {/* CTA Section */}
-      <motion.div variants={linkVariants} className="w-full flex flex-col gap-4">
-        <Link href="/membership/checkout" onClick={onClose}>
-          <GoldButton className="w-full text-center py-4 text-xl tracking-[0.2em]">
-            JOIN NOW
-          </GoldButton>
-        </Link>
-        <div className="text-center font-dm-sans text-[10px] text-on-surface-variant/40 tracking-wider">
+      <motion.div variants={linkVariants} className="w-full flex flex-col gap-4 mt-auto">
+        {user ? (
+          <button
+            onClick={handleLogout}
+            className="w-full text-center py-4 text-xl tracking-[0.2em] border border-error hover:bg-error/10 text-error font-bebas uppercase transition-all duration-300 rounded-sm flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <LogOut size={18} /> LOGOUT
+          </button>
+        ) : (
+          <div className="flex flex-col gap-3">
+            <Link href="/login" onClick={onClose}>
+              <button className="w-full text-center py-4 text-xl tracking-[0.2em] border border-primary hover:bg-primary/10 text-primary font-bebas uppercase transition-all duration-300 rounded-sm cursor-pointer">
+                LOGIN
+              </button>
+            </Link>
+            <Link href="/register" onClick={onClose}>
+              <GoldButton className="w-full text-center py-4 text-xl tracking-[0.2em]">
+                JOIN NOW
+              </GoldButton>
+            </Link>
+          </div>
+        )}
+        <div className="text-center font-dm-sans text-[10px] text-on-surface-variant/40 tracking-wider pt-2">
           © 2026 IRONFORGE FITNESS. ALL RIGHTS RESERVED.
         </div>
       </motion.div>

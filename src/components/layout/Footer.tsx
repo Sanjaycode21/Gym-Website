@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { Instagram, Twitter, Youtube, ArrowUp } from "lucide-react";
+import Logo from "@/components/ui/Logo";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -15,8 +16,8 @@ export default function Footer() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-gutter px-6 md:px-grid-margin py-16 md:py-section-gap-desktop max-w-7xl mx-auto">
         {/* Brand Column */}
         <div className="col-span-1 md:col-span-1">
-          <div className="font-bebas text-4xl text-primary mb-6 uppercase tracking-wider">
-            IRONFORGE
+          <div className="mb-6">
+            <Logo textSize="text-3xl" iconSize={34} />
           </div>
           <p className="text-on-surface-variant font-dm-sans text-sm leading-relaxed max-w-xs mb-8">
             DEFINING THE NEW STANDARD IN HUMAN PERFORMANCE. LUXURY MEETS RAW INTENSITY.

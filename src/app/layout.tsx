@@ -4,9 +4,11 @@ import {
   DM_Sans,
   Cormorant_Garamond,
   JetBrains_Mono,
+  Syncopate,
 } from "next/font/google";
 import "./globals.css";
 import PageLoader from "@/components/layout/PageLoader";
+import { AuthProvider } from "@/components/providers/AuthProvider";
 
 /* ─── Font declarations ─────────────────────────────────────────────────────── */
 const bebasNeue = Bebas_Neue({
@@ -36,6 +38,13 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
   variable: "--font-mono",
   weight: ["400", "500"],
+});
+
+const syncopate = Syncopate({
+  weight: ["700"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-syncopate",
 });
 
 /* ─── Metadata ───────────────────────────────────────────────────────────────── */
@@ -89,6 +98,7 @@ export default function RootLayout({
     dmSans.variable,
     cormorant.variable,
     jetbrainsMono.variable,
+    syncopate.variable,
   ].join(" ");
 
   return (
@@ -97,11 +107,13 @@ export default function RootLayout({
         {/* Film grain overlay */}
         <div className="grain-overlay" aria-hidden="true" />
 
-        {/* First-load animation */}
-        <PageLoader />
+        <AuthProvider>
+          {/* First-load animation */}
+          <PageLoader />
 
-        {/* Page content */}
-        {children}
+          {/* Page content */}
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

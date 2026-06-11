@@ -3,9 +3,12 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ArrowRight, Check, Instagram } from "lucide-react";
+import Link from "next/link";
 import { trainers } from "@/lib/mockData";
 import { Trainer } from "@/types";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import GoldButton from "@/components/ui/GoldButton";
+import GhostButton from "@/components/ui/GhostButton";
 
 export default function TrainersPage() {
   const [selectedTrainer, setSelectedTrainer] = useState<Trainer>(
@@ -247,12 +250,16 @@ export default function TrainersPage() {
             to ensure maximum attention to every detail of your performance journey.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 mt-4">
-            <button className="bg-primary text-on-primary font-bebas text-xl px-10 py-4 gold-shimmer tracking-wider">
-              CONSULTATION
-            </button>
-            <button className="border border-primary text-primary font-bebas text-xl px-10 py-4 hover:bg-primary hover:text-on-primary transition-colors duration-300 tracking-wider">
-              VIEW PACKAGES
-            </button>
+            <Link href="/contact" className="w-full sm:w-auto">
+              <GoldButton className="w-full px-10 py-4 text-xl tracking-wider">
+                CONSULTATION
+              </GoldButton>
+            </Link>
+            <Link href="/membership" className="w-full sm:w-auto">
+              <GhostButton variant="gold" className="w-full px-10 py-4 text-xl tracking-wider">
+                VIEW PACKAGES
+              </GhostButton>
+            </Link>
           </div>
         </div>
       </section>

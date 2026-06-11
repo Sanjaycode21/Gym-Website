@@ -7,8 +7,87 @@ import GoldDivider from "../ui/GoldDivider";
 import GoldButton from "../ui/GoldButton";
 import GhostButton from "../ui/GhostButton";
 import ScrollReveal from "../ui/ScrollReveal";
+import { useAuth } from "@/components/providers/AuthProvider";
 
 export default function CTABanner() {
+  const { user, membership } = useAuth();
+  const hasMembership = membership && membership.status === "ACTIVE";
+
+  const getHeadline = () => {
+    if (user) {
+      return (
+        <>
+          WELCOME BACK, <span className="text-primary italic font-cormorant capitalize font-normal">{user.name.split(" ")[0].toLowerCase()}</span>
+        </>
+      );
+    }
+    return (
+      <>
+        Ready to Forge Your <span className="text-primary italic font-cormorant capitalize font-normal">Legacy?</span>
+      </>
+    );
+  };
+
+  const getSubtitle = () => {
+    if (user) {
+      if (hasMembership) {
+        return "Access your personalized member panel to book elite training sessions, review schedules, and track your metrics.";
+      }
+      return "You don't have an active membership yet. Select one of our premium athletic plans to begin your training legacy.";
+    }
+    return "Join the ranks of the elite. Start your transformation today with IronForge's premium facility layouts, world-class athletic coaches, and recovery zones.";
+  };
+
+  const getCTA = () => {
+    if (user) {
+      if (hasMembership) {
+        return (
+          <>
+            <Link href="/dashboard">
+              <GoldButton className="w-full sm:w-auto px-12 py-5 text-[22px] tracking-[0.2em] uppercase">
+                GO TO DASHBOARD
+              </GoldButton>
+            </Link>
+            <Link href="/classes">
+              <GhostButton variant="white" className="w-full sm:w-auto px-12 py-5 text-[22px] tracking-[0.2em] uppercase">
+                BOOK CLASSES
+              </GhostButton>
+            </Link>
+          </>
+        );
+      } else {
+        return (
+          <>
+            <Link href="/membership">
+              <GoldButton className="w-full sm:w-auto px-12 py-5 text-[22px] tracking-[0.2em] uppercase">
+                VIEW PLANS
+              </GoldButton>
+            </Link>
+            <Link href="/contact">
+              <GhostButton variant="white" className="w-full sm:w-auto px-12 py-5 text-[22px] tracking-[0.2em] uppercase">
+                BOOK A TOUR
+              </GhostButton>
+            </Link>
+          </>
+        );
+      }
+    }
+    return (
+      <>
+        <Link href="/membership">
+          <GoldButton className="w-full sm:w-auto px-12 py-5 text-[22px] tracking-[0.2em] uppercase">
+            JOIN THE FORGE
+          </GoldButton>
+        </Link>
+        <Link href="/contact">
+          <GhostButton variant="white" className="w-full sm:w-auto px-12 py-5 text-[22px] tracking-[0.2em] uppercase">
+            BOOK A TOUR
+          </GhostButton>
+        </Link>
+      </>
+    );
+  };
+
   return (
     <section className="relative py-24 md:py-section-gap-desktop bg-background px-6 md:px-grid-margin w-full overflow-hidden flex flex-col justify-center items-center text-center">
       {/* Background Graphic */}
@@ -32,33 +111,21 @@ export default function CTABanner() {
         {/* Heading */}
         <ScrollReveal yOffset={30} delay={0.2}>
           <h2 className="font-bebas text-5xl sm:text-6xl md:text-7xl leading-none tracking-wider text-on-surface uppercase">
-            Ready to Forge Your <span className="text-primary italic font-cormorant capitalize font-normal">Legacy?</span>
+            {getHeadline()}
           </h2>
         </ScrollReveal>
 
         {/* Description */}
         <ScrollReveal yOffset={30} delay={0.4}>
           <p className="font-dm-sans text-sm sm:text-base md:text-lg text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
-            Join the ranks of the elite. Start your transformation today with IronForge's premium facility layouts, world-class athletic coaches, and recovery zones.
+            {getSubtitle()}
           </p>
         </ScrollReveal>
 
         {/* Buttons CTA */}
         <ScrollReveal yOffset={35} delay={0.6}>
           <div className="flex flex-col sm:flex-row gap-6 justify-center w-full sm:w-auto mt-4">
-            <Link href="/membership">
-              <GoldButton className="w-full sm:w-auto px-12 py-5 text-[22px] tracking-[0.2em]">
-                JOIN THE FORGE
-              </GoldButton>
-            </Link>
-            <Link href="/contact">
-              <GhostButton
-                variant="white"
-                className="w-full sm:w-auto px-12 py-5 text-[22px] tracking-[0.2em]"
-              >
-                BOOK A TOUR
-              </GhostButton>
-            </Link>
+            {getCTA()}
           </div>
         </ScrollReveal>
       </div>

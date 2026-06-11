@@ -6,9 +6,16 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import GoldButton from "../ui/GoldButton";
 import GhostButton from "../ui/GhostButton";
+import { useAuth } from "@/components/providers/AuthProvider";
 
 export default function HeroSection() {
-  const headline = "DEFINING THE NEW STANDARD IN HUMAN PERFORMANCE";
+  const { user, membership, loading } = useAuth();
+
+  const hasMembership = membership && membership.status === "ACTIVE";
+
+  const headline = user
+    ? `WELCOME BACK, ${user.name.split(" ")[0]}`
+    : "DEFINING THE NEW STANDARD IN HUMAN PERFORMANCE";
   const words = headline.split(" ");
 
   const containerVariants = {
@@ -16,7 +23,7 @@ export default function HeroSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.08,
       },
     },
   };
@@ -31,6 +38,70 @@ export default function HeroSection() {
         ease: [0.2, 0.8, 0.2, 1],
       },
     },
+  };
+
+  const getSubtitle = () => {
+    if (loading) return "";
+    if (user) {
+      if (hasMembership) {
+        return `Your training schedule is live. You are subscribed to the ${membership?.plan?.name || "active"} tier. Access your stats and bookings from your member dashboard.`;
+      } else {
+        return "You don't have an active membership yet. Select one of our athletic plans to start your training legacy.";
+      }
+    }
+    return "An elite training environment designed for those who demand absolute mechanical precision and premium recovery. Break boundaries. Forge your legacy.";
+  };
+
+  const getCTA = () => {
+    if (loading) return null;
+    if (user) {
+      if (hasMembership) {
+        return (
+          <>
+            <Link href="/dashboard">
+              <GoldButton className="w-full sm:w-auto tracking-[0.2em] px-12 py-5 text-[20px] uppercase">
+                GO TO DASHBOARD
+              </GoldButton>
+            </Link>
+            <Link href="/classes">
+              <GhostButton variant="white" className="w-full sm:w-auto tracking-[0.2em] px-12 py-5 text-[20px] uppercase">
+                BOOK CLASSES
+              </GhostButton>
+            </Link>
+          </>
+        );
+      } else {
+        return (
+          <>
+            <Link href="/membership">
+              <GoldButton className="w-full sm:w-auto tracking-[0.2em] px-12 py-5 text-[20px] uppercase">
+                VIEW MEMBERSHIP PLANS
+              </GoldButton>
+            </Link>
+            <Link href="/contact">
+              <GhostButton variant="white" className="w-full sm:w-auto tracking-[0.2em] px-12 py-5 text-[20px] uppercase">
+                BOOK A TOUR
+              </GhostButton>
+            </Link>
+          </>
+        );
+      }
+    }
+
+    return (
+      <>
+        <Link href="/membership">
+          <GoldButton className="w-full sm:w-auto tracking-[0.2em] px-12 py-5 text-[20px] uppercase">
+            JOIN THE FORGE
+          </GoldButton>
+        </Link>
+        <Link href="/contact">
+          <GhostButton variant="white" className="w-full sm:w-auto tracking-[0.2em] px-12 py-5 text-[20px] uppercase">
+            BOOK A TOUR
+          </GhostButton>
+        </Link>
+      </>
+    );
   };
 
   return (
@@ -58,15 +129,16 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="font-dm-sans text-xs font-bold text-primary tracking-[0.4em] bg-primary/10 px-4 py-1.5 rounded-sm uppercase"
         >
-          LUXURY MEETS RAW INTENSITY
+          {user ? `MEMBER STATE: ${hasMembership ? "ACTIVE" : "REGISTERED"}` : "LUXURY MEETS RAW INTENSITY"}
         </motion.span>
 
         {/* Staggered Word Reveal Heading */}
         <motion.h1
+          key={headline}
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="font-bebas text-6xl sm:text-7xl md:text-8xl leading-[0.9] text-on-background tracking-wider max-w-5xl text-left"
+          className="font-bebas text-6xl sm:text-7xl md:text-8xl leading-[0.9] text-on-background tracking-wider max-w-5xl text-left uppercase"
         >
           {words.map((word, idx) => (
             <span key={idx} className="inline-block mr-4 overflow-hidden">
@@ -85,34 +157,23 @@ export default function HeroSection() {
 
         {/* Subtitle */}
         <motion.p
+          key={getSubtitle()}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 0.8, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
           className="font-dm-sans text-sm sm:text-base md:text-lg text-on-surface-variant max-w-2xl leading-relaxed text-left"
         >
-          An elite training environment designed for those who demand absolute mechanical precision and premium recovery. Break boundaries. Forge your legacy.
+          {getSubtitle()}
         </motion.p>
 
         {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.4 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
           className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-4"
         >
-          <Link href="/membership">
-            <GoldButton className="w-full sm:w-auto tracking-[0.2em] px-12 py-5 text-[20px]">
-              JOIN THE FORGE
-            </GoldButton>
-          </Link>
-          <Link href="/contact">
-            <GhostButton
-              variant="white"
-              className="w-full sm:w-auto tracking-[0.2em] px-12 py-5 text-[20px]"
-            >
-              BOOK A TOUR
-            </GhostButton>
-          </Link>
+          {getCTA()}
         </motion.div>
       </div>
 

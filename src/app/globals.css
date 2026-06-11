@@ -5,8 +5,11 @@
   --color-background-stitch: #16130d;
   --color-foreground: #e9e1d7;
   --color-primary: #e6c364;
+  --color-on-primary: #100E08;
   --color-secondary: #e6c368;
+  --color-on-secondary: #100E08;
   --color-tertiary: #b9c4ff;
+  --color-on-tertiary: #100E08;
   --color-gold-accent: #C9A84C;
   --color-gold-light: #E8C56A;
   --color-gold-muted: #A0844A;
@@ -35,6 +38,7 @@
   --font-dm-sans: var(--font-dm-sans), sans-serif;
   --font-cormorant: var(--font-cormorant), serif;
   --font-mono: var(--font-mono), monospace;
+  --font-syncopate: var(--font-syncopate), sans-serif;
 
   --spacing-grid-margin: 40px;
   --spacing-base: 8px;

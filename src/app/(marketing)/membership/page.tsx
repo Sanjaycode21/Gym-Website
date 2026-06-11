@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, XCircle, ChevronDown, Utensils, Lock, Dumbbell } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import GoldDivider from "@/components/ui/GoldDivider";
+import { useAuth } from "@/components/providers/AuthProvider";
 
 const plans = [
   {
@@ -114,6 +115,7 @@ const faqs = [
 export default function MembershipPage() {
   const [isAnnual, setIsAnnual] = useState(true);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const { user, membership } = useAuth();
 
   return (
     <>
@@ -160,6 +162,48 @@ export default function MembershipPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
           {plans.map((plan, i) => {
             const price = isAnnual ? plan.annualPrice : plan.monthlyPrice;
+            
+            const getPlanCTA = () => {
+              if (!user) {
+                return {
+                  text: plan.cta,
+                  href: `/login?redirect=/checkout?plan=${plan.id}`
+                };
+              }
+              
+              const hasActive = membership && membership.status === "ACTIVE";
+              if (hasActive && membership.plan) {
+                if (membership.plan.slug === plan.id) {
+                  return {
+                    text: "Renew Current Plan",
+                    href: `/checkout?plan=${plan.id}`
+                  };
+                } else {
+                  const tierOrder = ["starter", "pro", "elite"];
+                  const currentIdx = tierOrder.indexOf(membership.plan.slug);
+                  const planIdx = tierOrder.indexOf(plan.id);
+                  if (planIdx > currentIdx) {
+                    return {
+                      text: `Upgrade to ${plan.name}`,
+                      href: `/checkout?plan=${plan.id}`
+                    };
+                  } else {
+                    return {
+                      text: `Switch to ${plan.name}`,
+                      href: `/checkout?plan=${plan.id}`
+                    };
+                  }
+                }
+              }
+              
+              return {
+                text: plan.cta,
+                href: `/checkout?plan=${plan.id}`
+              };
+            };
+
+            const ctaInfo = getPlanCTA();
+
             return (
               <ScrollReveal key={plan.id} delay={i * 0.1}>
                 <div
@@ -210,15 +254,15 @@ export default function MembershipPage() {
                     ))}
                   </div>
 
-                  <Link href="/checkout">
+                  <Link href={ctaInfo.href}>
                     <button
-                      className={`w-full py-4 font-[family-name:var(--font-bebas-neue)] text-lg tracking-widest uppercase transition-all duration-300
+                      className={`w-full py-4 font-[family-name:var(--font-bebas-neue)] text-lg tracking-widest uppercase transition-all duration-300 cursor-pointer
                         ${plan.featured
                           ? "bg-[#e6c364] text-[#3d2e00] gold-shimmer"
                           : "border border-[#e6c364] text-[#e6c364] hover:bg-[#e6c364] hover:text-[#3d2e00]"
                         }`}
                     >
-                      {plan.cta}
+                      {ctaInfo.text}
                     </button>
                   </Link>
                 </div>
@@ -236,27 +280,27 @@ export default function MembershipPage() {
               Detailed Comparison
             </h2>
           </ScrollReveal>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left">
+          <div className="overflow-x-auto custom-scrollbar">
+            <table className="w-full text-left min-w-[650px] border-collapse">
               <thead>
                 <tr className="border-b border-[#4d4637]/30">
-                  <th className="py-6 font-[family-name:var(--font-dm-sans)] text-xs font-bold uppercase tracking-[0.1em] text-[#4d4637]">FEATURES</th>
-                  <th className="py-6 font-[family-name:var(--font-bebas-neue)] text-2xl text-center">STARTER</th>
-                  <th className="py-6 font-[family-name:var(--font-bebas-neue)] text-2xl text-center text-[#e6c364]">PRO</th>
-                  <th className="py-6 font-[family-name:var(--font-bebas-neue)] text-2xl text-center">ELITE</th>
+                  <th className="py-6 pr-4 font-[family-name:var(--font-dm-sans)] text-xs font-bold uppercase tracking-[0.1em] text-[#4d4637] w-2/5">FEATURES</th>
+                  <th className="py-6 px-4 font-[family-name:var(--font-bebas-neue)] text-2xl text-center w-1/5">STARTER</th>
+                  <th className="py-6 px-4 font-[family-name:var(--font-bebas-neue)] text-2xl text-center text-[#e6c364] w-1/5">PRO</th>
+                  <th className="py-6 px-4 font-[family-name:var(--font-bebas-neue)] text-2xl text-center w-1/5">ELITE</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#4d4637]/10">
                 {comparisonRows.map((row, i) => (
                   <tr key={i}>
-                    <td className="py-6 font-[family-name:var(--font-dm-sans)] text-sm">{row.feature}</td>
-                    <td className="py-6 text-center font-[family-name:var(--font-dm-sans)] text-sm text-[#99907e]">
+                    <td className="py-6 pr-4 font-[family-name:var(--font-dm-sans)] text-sm">{row.feature}</td>
+                    <td className="py-6 px-4 text-center font-[family-name:var(--font-dm-sans)] text-sm text-[#99907e]">
                       {row.starter === "✓" ? <CheckCircle size={18} className="mx-auto text-[#e6c364]" /> : row.starter === "✗" ? <XCircle size={18} className="mx-auto text-[#4d4637]" /> : row.starter}
                     </td>
-                    <td className="py-6 text-center font-[family-name:var(--font-dm-sans)] text-sm">
+                    <td className="py-6 px-4 text-center font-[family-name:var(--font-dm-sans)] text-sm">
                       {row.pro === "✓" ? <CheckCircle size={18} className="mx-auto text-[#e6c364]" /> : row.pro}
                     </td>
-                    <td className="py-6 text-center font-[family-name:var(--font-dm-sans)] text-sm">
+                    <td className="py-6 px-4 text-center font-[family-name:var(--font-dm-sans)] text-sm">
                       {row.elite === "✓" ? <CheckCircle size={18} className="mx-auto text-[#e6c364]" /> : row.elite}
                     </td>
                   </tr>
@@ -369,13 +413,39 @@ export default function MembershipPage() {
             Join the ranks of the elite. Start your transformation today with IronForge&apos;s premium facilities and world-class trainers.
           </p>
           <div className="flex flex-col md:flex-row gap-6 justify-center">
-            <Link href="/checkout">
-              <button className="bg-[#e6c364] text-[#3d2e00] font-[family-name:var(--font-bebas-neue)] text-2xl px-12 py-5 gold-shimmer uppercase tracking-widest">
-                Join The Forge
-              </button>
-            </Link>
+            {(() => {
+              const getBottomCTA = () => {
+                if (!user) {
+                  return {
+                    text: "Join The Forge",
+                    href: "/login?redirect=/checkout?plan=pro"
+                  };
+                }
+                const hasActive = membership && membership.status === "ACTIVE";
+                if (hasActive) {
+                  return {
+                    text: "Go to Dashboard",
+                    href: "/dashboard"
+                  };
+                }
+                return {
+                  text: "View Plans",
+                  href: "#billingToggle"
+                };
+              };
+
+              const bottomCTA = getBottomCTA();
+
+              return (
+                <Link href={bottomCTA.href}>
+                  <button className="bg-[#e6c364] text-[#3d2e00] font-[family-name:var(--font-bebas-neue)] text-2xl px-12 py-5 gold-shimmer uppercase tracking-widest cursor-pointer">
+                    {bottomCTA.text}
+                  </button>
+                </Link>
+              );
+            })()}
             <Link href="/contact">
-              <button className="border border-white text-white font-[family-name:var(--font-bebas-neue)] text-2xl px-12 py-5 hover:bg-white hover:text-black transition-all uppercase tracking-widest">
+              <button className="border border-white text-white font-[family-name:var(--font-bebas-neue)] text-2xl px-12 py-5 hover:bg-white hover:text-black transition-all uppercase tracking-widest cursor-pointer">
                 Book A Tour
               </button>
             </Link>

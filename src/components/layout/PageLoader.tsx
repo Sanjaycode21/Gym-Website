@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Logo from "@/components/ui/Logo";
 
 export default function PageLoader() {
   const [isVisible, setIsVisible] = useState(true);
@@ -68,14 +69,18 @@ export default function PageLoader() {
         >
           <div className="flex flex-col items-center gap-4">
             {/* Animated Logo Text */}
-            <motion.h1
+            <motion.div
               initial="hidden"
               animate="visible"
               variants={textVariants}
-              className="font-bebas text-6xl md:text-8xl tracking-[0.3em] text-primary"
+              className="flex flex-col items-center gap-4"
             >
-              IRONFORGE
-            </motion.h1>
+              <Logo showText={false} iconSize={88} />
+              <h1 className="font-bebas text-5xl md:text-7xl tracking-[0.2em] leading-none select-none flex items-center">
+                <span className="text-[#FFFFFF]">IRON</span>
+                <span className="text-primary bg-clip-text">FORGE</span>
+              </h1>
+            </motion.div>
 
             {/* Fading Gold Bar */}
             <motion.div

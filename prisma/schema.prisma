@@ -1,0 +1,87 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String         @id @default(cuid())
+  email        String         @unique
+  name         String
+  password     String
+  phone        String?
+  role         String         @default("MEMBER") // "MEMBER", "TRAINER", "ADMIN"
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  membership   Membership?
+  bookings     ClassBooking[]
+  payments     Payment[]
+}
+
+model MembershipPlan {
+  id           String       @id @default(cuid())
+  name         String       // "STARTER" | "PRO" | "ELITE"
+  slug         String       @unique
+  monthlyPrice Float
+  annualPrice  Float
+  features     String       // Serialized string array
+  isPopular    Boolean      @default(false)
+  memberships  Membership[]
+}
+
+model Membership {
+  id          String         @id @default(cuid())
+  userId      String         @unique
+  planId      String
+  status      String         @default("ACTIVE") // "ACTIVE", "EXPIRED", "PAUSED", "CANCELLED"
+  startDate   DateTime       @default(now())
+  endDate     DateTime
+  autoRenew   Boolean        @default(true)
+  createdAt   DateTime       @default(now())
+  user        User           @relation(fields: [userId], references: [id])
+  plan        MembershipPlan @relation(fields: [planId], references: [id])
+}
+
+model GymClass {
+  id          String         @id @default(cuid())
+  name        String
+  slug        String         @unique
+  description String
+  type        String         // YOGA, HIIT, CROSSFIT, BOXING, STRENGTH
+  trainerId   String
+  trainerName String
+  dayOfWeek   Int            // 0=Sun, 1=Mon ... 6=Sat
+  startTime   String         // e.g. "07:00"
+  duration    Int            // minutes
+  capacity    Int
+  slotsLeft   Int
+  bookings    ClassBooking[]
+}
+
+model ClassBooking {
+  id         String   @id @default(cuid())
+  userId     String
+  classId    String
+  classDate  String   // e.g. "OCT 14"
+  startTime  String   // e.g. "06:30 AM"
+  status     String   @default("CONFIRMED") // "CONFIRMED", "CANCELLED"
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id])
+  gymClass   GymClass @relation(fields: [classId], references: [id])
+
+  @@unique([userId, classId, classDate])
+}
+
+model Payment {
+  id           String   @id @default(cuid())
+  userId       String
+  description  String
+  amount       Float
+  status       String   @default("SUCCESS") // "SUCCESS", "PENDING", "FAILED"
+  gateway      String   @default("razorpay")
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id])
+}

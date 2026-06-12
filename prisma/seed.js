@@ -4,17 +4,15 @@ const prisma = new PrismaClient();
 async function main() {
   console.log("Seeding started...");
 
-  // Clean DB
-  await prisma.classBooking.deleteMany();
-  await prisma.gymClass.deleteMany();
-  await prisma.payment.deleteMany();
-  await prisma.membership.deleteMany();
-  await prisma.membershipPlan.deleteMany();
-  await prisma.user.deleteMany();
-
-  // Create Users
-  const admin = await prisma.user.create({
-    data: {
+  // Create Users using upsert to avoid duplicate emails
+  const admin = await prisma.user.upsert({
+    where: { email: "admin@ironforge.fit" },
+    update: {
+      name: "Admin Owner",
+      password: "AdminPass123",
+      role: "ADMIN",
+    },
+    create: {
       email: "admin@ironforge.fit",
       name: "Admin Owner",
       password: "AdminPass123",
@@ -22,8 +20,15 @@ async function main() {
     },
   });
 
-  const member = await prisma.user.create({
-    data: {
+  const member = await prisma.user.upsert({
+    where: { email: "sanjay@ironforge.fit" },
+    update: {
+      name: "Sanjay Kumar",
+      password: "MemberPass123",
+      role: "MEMBER",
+      phone: "+91 98765 43210",
+    },
+    create: {
       email: "sanjay@ironforge.fit",
       name: "Sanjay Kumar",
       password: "MemberPass123",
@@ -32,11 +37,24 @@ async function main() {
     },
   });
 
-  console.log("Users created:", admin.email, member.email);
+  console.log("Users seeded:", admin.email, member.email);
 
-  // Create Plans
-  const starter = await prisma.membershipPlan.create({
-    data: {
+  // Create Membership Plans using upsert on slug
+  const starter = await prisma.membershipPlan.upsert({
+    where: { slug: "starter" },
+    update: {
+      name: "STARTER",
+      monthlyPrice: 999,
+      annualPrice: 799,
+      features: JSON.stringify([
+        "Access to Cardio Zone",
+        "Standard Strength Area",
+        "Locker Room Access",
+        "No Guest Passes"
+      ]),
+      isPopular: false,
+    },
+    create: {
       name: "STARTER",
       slug: "starter",
       monthlyPrice: 999,
@@ -51,8 +69,21 @@ async function main() {
     },
   });
 
-  const pro = await prisma.membershipPlan.create({
-    data: {
+  const pro = await prisma.membershipPlan.upsert({
+    where: { slug: "pro" },
+    update: {
+      name: "PRO",
+      monthlyPrice: 1799,
+      annualPrice: 1439,
+      features: JSON.stringify([
+        "All Standard Features",
+        "Unlimited Group Classes",
+        "Premium Sauna Access",
+        "2 Guest Passes / Mo"
+      ]),
+      isPopular: true,
+    },
+    create: {
       name: "PRO",
       slug: "pro",
       monthlyPrice: 1799,
@@ -67,8 +98,21 @@ async function main() {
     },
   });
 
-  const elite = await prisma.membershipPlan.create({
-    data: {
+  const elite = await prisma.membershipPlan.upsert({
+    where: { slug: "elite" },
+    update: {
+      name: "ELITE",
+      monthlyPrice: 2999,
+      annualPrice: 2399,
+      features: JSON.stringify([
+        "All Pro Features",
+        "Private Locker & Laundry",
+        "Weekly Nutrition Consult",
+        "Priority Booking Access"
+      ]),
+      isPopular: false,
+    },
+    create: {
       name: "ELITE",
       slug: "elite",
       monthlyPrice: 2999,
@@ -83,16 +127,23 @@ async function main() {
     },
   });
 
-  console.log("Plans created.");
+  console.log("Plans seeded.");
 
-  // Create Membership for Member
+  // Create/Upsert Membership for Member
   const oneMonthAgo = new Date();
   oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
   const fiveMonthsFromNow = new Date();
   fiveMonthsFromNow.setMonth(fiveMonthsFromNow.getMonth() + 5);
 
-  await prisma.membership.create({
-    data: {
+  await prisma.membership.upsert({
+    where: { userId: member.id },
+    update: {
+      planId: pro.id,
+      status: "ACTIVE",
+      startDate: oneMonthAgo,
+      endDate: fiveMonthsFromNow,
+    },
+    create: {
       userId: member.id,
       planId: pro.id,
       status: "ACTIVE",
@@ -101,9 +152,9 @@ async function main() {
     },
   });
 
-  console.log("Membership created.");
+  console.log("Membership seeded.");
 
-  // Create Gym Classes
+  // Create/Upsert Gym Classes
   const classesData = [
     {
       name: "ELITE CROSSFIT AMRAP",
@@ -212,19 +263,34 @@ async function main() {
   ];
 
   for (const c of classesData) {
-    await prisma.gymClass.create({ data: c });
+    await prisma.gymClass.upsert({
+      where: { slug: c.slug },
+      update: c,
+      create: c,
+    });
   }
 
-  console.log("Classes created.");
+  console.log("Classes seeded.");
 
-  // Create Bookings for Sanjay
+  // Fetch updated classes to map by slug for booking references
   const classes = await prisma.gymClass.findMany();
   const classStrength = classes.find(c => c.slug === "strength-lab");
   const classHIIT = classes.find(c => c.slug === "power-hiit");
 
   if (classStrength) {
-    await prisma.classBooking.create({
-      data: {
+    await prisma.classBooking.upsert({
+      where: {
+        userId_classId_classDate: {
+          userId: member.id,
+          classId: classStrength.id,
+          classDate: "OCT 14",
+        }
+      },
+      update: {
+        startTime: "06:30 AM",
+        status: "CONFIRMED",
+      },
+      create: {
         userId: member.id,
         classId: classStrength.id,
         classDate: "OCT 14",
@@ -235,8 +301,19 @@ async function main() {
   }
 
   if (classHIIT) {
-    await prisma.classBooking.create({
-      data: {
+    await prisma.classBooking.upsert({
+      where: {
+        userId_classId_classDate: {
+          userId: member.id,
+          classId: classHIIT.id,
+          classDate: "OCT 16",
+        }
+      },
+      update: {
+        startTime: "05:00 PM",
+        status: "CONFIRMED",
+      },
+      create: {
         userId: member.id,
         classId: classHIIT.id,
         classDate: "OCT 16",
@@ -246,40 +323,49 @@ async function main() {
     });
   }
 
-  console.log("Bookings created.");
+  console.log("Bookings seeded.");
 
-  // Create Payments for Sanjay
-  await prisma.payment.create({
-    data: {
-      userId: member.id,
-      description: "Monthly Pro Membership",
-      amount: 1439,
-      status: "SUCCESS",
-      gateway: "razorpay",
-      createdAt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
-    }
+  // Create Payments safely by checking if they already exist
+  const existingPayments = await prisma.payment.findMany({
+    where: { userId: member.id }
   });
 
-  await prisma.payment.create({
-    data: {
-      userId: member.id,
-      description: "Personal Training (x4)",
-      amount: 4800,
-      status: "SUCCESS",
-      gateway: "razorpay",
-      createdAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000),
+  const createPaymentIfMissing = async (paymentData) => {
+    const exists = existingPayments.some(
+      p => p.description === paymentData.description &&
+           p.amount === paymentData.amount &&
+           Math.abs(new Date(p.createdAt).getTime() - paymentData.createdAt.getTime()) < 1000 * 60 * 60 * 24
+    );
+    if (!exists) {
+      await prisma.payment.create({ data: paymentData });
     }
+  };
+
+  await createPaymentIfMissing({
+    userId: member.id,
+    description: "Monthly Pro Membership",
+    amount: 1439,
+    status: "SUCCESS",
+    gateway: "razorpay",
+    createdAt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
   });
 
-  await prisma.payment.create({
-    data: {
-      userId: member.id,
-      description: "Monthly Pro Membership",
-      amount: 1439,
-      status: "SUCCESS",
-      gateway: "razorpay",
-      createdAt: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000),
-    }
+  await createPaymentIfMissing({
+    userId: member.id,
+    description: "Personal Training (x4)",
+    amount: 4800,
+    status: "SUCCESS",
+    gateway: "razorpay",
+    createdAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000),
+  });
+
+  await createPaymentIfMissing({
+    userId: member.id,
+    description: "Monthly Pro Membership",
+    amount: 1439,
+    status: "SUCCESS",
+    gateway: "razorpay",
+    createdAt: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000),
   });
 
   // Mock revenue payments from other users
@@ -291,8 +377,14 @@ async function main() {
   ];
 
   for (const mu of mockUsers) {
-    const userObj = await prisma.user.create({
-      data: {
+    const userObj = await prisma.user.upsert({
+      where: { email: mu.email },
+      update: {
+        name: mu.name,
+        password: "Pass123",
+        role: "MEMBER",
+      },
+      create: {
         email: mu.email,
         name: mu.name,
         password: "Pass123",
@@ -300,20 +392,31 @@ async function main() {
       }
     });
 
-    // Subscriptions
-    await prisma.payment.create({
-      data: {
-        userId: userObj.id,
-        description: "Monthly Elite Membership",
-        amount: 2399,
-        status: "SUCCESS",
-        gateway: "razorpay",
-        createdAt: new Date(Date.now() - Math.floor(Math.random() * 90) * 24 * 60 * 60 * 1000),
-      }
+    const userPayments = await prisma.payment.findMany({
+      where: { userId: userObj.id }
     });
+
+    const paymentAmount = 2399;
+    const paymentDesc = "Monthly Elite Membership";
+    const paymentExists = userPayments.some(
+      p => p.description === paymentDesc && p.amount === paymentAmount
+    );
+
+    if (!paymentExists) {
+      await prisma.payment.create({
+        data: {
+          userId: userObj.id,
+          description: paymentDesc,
+          amount: paymentAmount,
+          status: "SUCCESS",
+          gateway: "razorpay",
+          createdAt: new Date(Date.now() - Math.floor(Math.random() * 90) * 24 * 60 * 60 * 1000),
+        }
+      });
+    }
   }
 
-  console.log("Mock revenue payments created.");
+  console.log("Mock revenue payments seeded.");
   console.log("Seeding finished successfully!");
 }
 

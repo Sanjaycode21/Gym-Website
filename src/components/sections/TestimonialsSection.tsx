@@ -32,7 +32,7 @@ export default function TestimonialsSection() {
                 Member <span className="text-primary italic font-cormorant capitalize font-normal">Testimonials</span>
               </>
             }
-            subtitle="THE FORGE EXPERIENCE"
+            subtitle="MEMBER REVIEWS"
             align="center"
           />
         </ScrollReveal>
@@ -46,7 +46,7 @@ export default function TestimonialsSection() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="bg-surface-container border border-outline-variant/30 p-8 md:p-12 rounded-lg flex flex-col md:flex-row items-center gap-8 md:gap-10 w-full"
+              className="bg-surface-container border border-outline-variant/30 p-8 md:p-12 rounded-lg flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-10 w-full"
             >
               {/* Member Avatar */}
               <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0 rounded-full overflow-hidden border border-primary/30 shadow-lg">

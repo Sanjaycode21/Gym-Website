@@ -51,9 +51,11 @@ export default function TrainerCard({ trainer, onClick }: TrainerCardProps) {
         </h3>
         
         {/* Hover Bio Reveal */}
-        <p className="font-dm-sans text-sm text-on-surface-variant leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 mt-4 border-t border-primary/20 pt-4">
-          {trainer.bio}
-        </p>
+        <div className="max-h-0 group-hover:max-h-40 overflow-hidden transition-all duration-500 ease-in-out">
+          <p className="font-dm-sans text-sm text-on-surface-variant leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 mt-4 border-t border-primary/20 pt-4">
+            {trainer.bio}
+          </p>
+        </div>
       </div>
     </div>
   );

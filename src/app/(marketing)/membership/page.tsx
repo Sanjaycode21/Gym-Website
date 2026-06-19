@@ -17,40 +17,40 @@ const plans = [
     annualPrice: 799,
     featured: false,
     features: [
-      { text: "Access to Cardio Zone", included: true },
-      { text: "Standard Strength Area", included: true },
-      { text: "Locker Room Access", included: true },
-      { text: "No Guest Passes", included: false },
+      { text: "Access to open gym and barbell platforms", included: true },
+      { text: "Full locker room and shower access", included: true },
+      { text: "Complimentary sweat towel service", included: true },
+      { text: "No guest passes", included: false },
     ],
     cta: "Select Starter",
   },
   {
     id: "pro",
-    tier: "FULL EXPERIENCE",
+    tier: "STANDARD MEMBERSHIP",
     name: "PRO",
     monthlyPrice: 1799,
     annualPrice: 1439,
     featured: true,
     features: [
-      { text: "All Standard Features", included: true },
-      { text: "Unlimited Group Classes", included: true },
-      { text: "Premium Sauna Access", included: true },
-      { text: "2 Guest Passes / Mo", included: true },
+      { text: "All Starter tier access", included: true },
+      { text: "Unlimited access to group classes", included: true },
+      { text: "Infrared sauna and cold plunge access", included: true },
+      { text: "2 guest day-passes per month", included: true },
     ],
     cta: "Select Pro",
   },
   {
     id: "elite",
-    tier: "VIP STATUS",
+    tier: "PREMIUM ACCESS",
     name: "ELITE",
     monthlyPrice: 2999,
     annualPrice: 2399,
     featured: false,
     features: [
-      { text: "All Pro Features", included: true },
-      { text: "Private Locker & Laundry", included: true },
-      { text: "Weekly Nutrition Consult", included: true },
-      { text: "Priority Booking Access", included: true },
+      { text: "All Pro tier access", included: true },
+      { text: "Private day locker and laundry service", included: true },
+      { text: "1-on-1 monthly training assessment", included: true },
+      { text: "10% discount on guest passes and retail", included: true },
     ],
     cta: "Select Elite",
   },
@@ -61,14 +61,14 @@ const comparisonRows = [
   { feature: "Olympic Lifting Platform", starter: "✗", pro: "✓", elite: "✓" },
   { feature: "High-Intensity Classes", starter: "2 / Mo", pro: "Unlimited", elite: "Unlimited" },
   { feature: "Sauna & Steam Bath", starter: "Pay per use", pro: "✓", elite: "✓" },
-  { feature: "Biometric Assessment", starter: "No", pro: "Monthly", elite: "Weekly" },
+  { feature: "Coach Consultation", starter: "No", pro: "Monthly", elite: "Weekly" },
 ];
 
 const addons = [
   {
     icon: <Dumbbell size={40} />,
     title: "PERSONAL TRAINING",
-    desc: "Dedicated 1-on-1 elite coaching sessions.",
+    desc: "Get customized instruction and workout plans from our certified strength coaches.",
     price: "From ₹1,200 / hr",
     span: "col-span-2",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBxKZYzKOKQ9iNOCI79TLv6OdmgAWT7QeNNMsYJoI3ciV1UJunF1ivi2pfYlinXbtEKTOPRmwnCAFFQTUQEGA4lHfG4-qDvYAy787Lu-C5EHBCXqpto2b8zyF-D2TcFO-4t98y_HzeUGLriKoYTxqky_XD9ei5KbhbZybpMy3UxuXfSv9jP1NAhpBi3mn_fMcRvL0nWVGgtsdXnf27DLwOMLnZ0nX4CrFL5i97qaEuJqq07TNhU9apd83LSyM4smA_BhTG1ctW3Jtz5",
@@ -76,14 +76,14 @@ const addons = [
   {
     icon: <Utensils size={40} />,
     title: "NUTRITION",
-    desc: "Tailored meal plans and supplement guidance.",
+    desc: "Get structured meal plans and calorie guides from our nutrition coaches.",
     price: "+₹500 / MO",
     span: "col-span-1",
   },
   {
     icon: <Lock size={40} />,
     title: "LOCKER",
-    desc: "Personalized secure storage for your gear.",
+    desc: "Keep your lifting belt, shoes, and gear in a secure, designated locker.",
     price: "+₹300 / MO",
     span: "col-span-1",
   },
@@ -96,19 +96,19 @@ const faqs = [
   },
   {
     q: "What are the guest pass rules?",
-    a: "Pro and Elite members receive monthly guest passes. Guests must sign a waiver and can access the gym for one full day.",
+    a: "Pro and Elite members receive complimentary guest passes each month. Guests need to check in at reception and sign a safety waiver.",
   },
   {
     q: "Is there a cancellation fee?",
-    a: "Monthly plans can be cancelled with 30 days notice. Annual plans have specific terms regarding early termination.",
+    a: "Monthly plans can be cancelled anytime with a 30-day notice. Annual memberships are a 12-month commitment and cannot be cancelled early without a fee.",
   },
   {
     q: "How do I book personal training?",
-    a: "Sessions can be booked directly through the IronForge App or at the reception desk.",
+    a: "You can schedule training sessions directly with your coach, through the member portal, or at the front desk.",
   },
   {
     q: "Is parking provided?",
-    a: "We offer complimentary 2-hour parking for Elite members. Other tiers can purchase parking as an add-on.",
+    a: "Complimentary parking is available for all members in our designated parking lot. Just scan your membership card at the gate.",
   },
 ];
 
@@ -407,10 +407,10 @@ export default function MembershipPage() {
         <GoldDivider className="mb-12" />
         <ScrollReveal>
           <h2 className="font-[family-name:var(--font-bebas-neue)] text-[72px] md:text-[96px] leading-none uppercase mb-8">
-            Ready to Forge Your Legacy?
+            Ready to Train with Purpose?
           </h2>
           <p className="font-[family-name:var(--font-dm-sans)] text-lg text-[#99907e] max-w-2xl mx-auto mb-12">
-            Join the ranks of the elite. Start your transformation today with IronForge&apos;s premium facilities and world-class trainers.
+            Train with professional-grade equipment, expert coaches, and structured programs designed to help you get results.
           </p>
           <div className="flex flex-col md:flex-row gap-6 justify-center">
             {(() => {

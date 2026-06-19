@@ -37,7 +37,7 @@ export default function TrainersPage() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col items-start gap-4">
             <span className="font-dm-sans text-xs font-bold text-primary tracking-widest bg-primary/10 px-4 py-1">
-              THE ELITE TEAM
+              OUR COACHES
             </span>
             <h1 className="font-bebas text-6xl md:text-8xl text-on-surface max-w-4xl leading-tight">
               MEET THE <span className="text-primary italic font-cormorant capitalize">Coaches</span>
@@ -243,11 +243,10 @@ export default function TrainersPage() {
       <section className="py-24 px-6 md:px-grid-margin relative">
         <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-8">
           <h2 className="font-bebas text-5xl md:text-6xl text-on-surface">
-            READY TO REFORGE YOURSELF?
+            READY TO WORK WITH A COACH?
           </h2>
           <p className="font-dm-sans text-lg text-on-surface-variant leading-relaxed max-w-2xl">
-            Our elite coaching roster is currently accepting new private clients. Spaces are limited
-            to ensure maximum attention to every detail of your performance journey.
+            Our coaches are currently accepting new private training clients. Contact us to schedule a consultation and discuss your goals.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 mt-4">
             <Link href="/contact" className="w-full sm:w-auto">

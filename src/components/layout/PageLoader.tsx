@@ -97,7 +97,7 @@ export default function PageLoader() {
               transition={{ delay: 1, duration: 0.5 }}
               className="font-dm-sans text-[10px] tracking-[0.4em] text-on-surface-variant uppercase mt-2"
             >
-              LUXURY ATHLETICS
+              STRENGTH & CONDITIONING
             </motion.p>
           </div>
         </motion.div>

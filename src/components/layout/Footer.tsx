@@ -20,7 +20,7 @@ export default function Footer() {
             <Logo textSize="text-3xl" iconSize={34} />
           </div>
           <p className="text-on-surface-variant font-dm-sans text-sm leading-relaxed max-w-xs mb-8">
-            DEFINING THE NEW STANDARD IN HUMAN PERFORMANCE. LUXURY MEETS RAW INTENSITY.
+            PREMIUM STRENGTH & CONDITIONING CLUB BUILT FOR SERIOUS TRAINING.
           </p>
         </div>
 

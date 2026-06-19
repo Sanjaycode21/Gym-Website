@@ -29,7 +29,7 @@ export default function GalleryPreview() {
                   THE FORGE <span className="text-primary italic font-cormorant capitalize font-normal">Gallery</span>
                 </>
               }
-              subtitle="VISUAL TOUR"
+              subtitle="FACILITY PREVIEW"
             />
 
             {/* Filter Tabs */}

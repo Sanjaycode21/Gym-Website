@@ -15,7 +15,7 @@ export default function HeroSection() {
 
   const headline = user
     ? `WELCOME BACK, ${user.name.split(" ")[0]}`
-    : "DEFINING THE NEW STANDARD IN HUMAN PERFORMANCE";
+    : "TRAIN WITH PURPOSE. BUILD REAL STRENGTH.";
   const words = headline.split(" ");
 
   const containerVariants = {
@@ -44,12 +44,12 @@ export default function HeroSection() {
     if (loading) return "";
     if (user) {
       if (hasMembership) {
-        return `Your training schedule is live. You are subscribed to the ${membership?.plan?.name || "active"} tier. Access your stats and bookings from your member dashboard.`;
+        return `Your training plan is active. Check your schedule, book your next session with your trainer, or view your progress from your member dashboard.`;
       } else {
-        return "You don't have an active membership yet. Select one of our athletic plans to start your training legacy.";
+        return "Choose a membership plan below to start training with our expert coaches and gain full access to our facilities.";
       }
     }
-    return "An elite training environment designed for those who demand absolute mechanical precision and premium recovery. Break boundaries. Forge your legacy.";
+    return "Train with professional-grade equipment, expert coaches, and structured programs designed to help you build strength, improve conditioning, and stay consistent. No gimmicks, just a dedicated environment built for lifting.";
   };
 
   const getCTA = () => {
@@ -129,7 +129,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="font-dm-sans text-xs font-bold text-primary tracking-[0.4em] bg-primary/10 px-4 py-1.5 rounded-sm uppercase"
         >
-          {user ? `MEMBER STATE: ${hasMembership ? "ACTIVE" : "REGISTERED"}` : "LUXURY MEETS RAW INTENSITY"}
+          {user ? `MEMBER STATE: ${hasMembership ? "ACTIVE" : "REGISTERED"}` : "BUILT FOR SERIOUS TRAINING"}
         </motion.span>
 
         {/* Staggered Word Reveal Heading */}
@@ -143,7 +143,7 @@ export default function HeroSection() {
           {words.map((word, idx) => (
             <span key={idx} className="inline-block mr-4 overflow-hidden">
               <motion.span variants={wordVariants} className="inline-block">
-                {word === "HUMAN" || word === "PERFORMANCE" ? (
+                {word.replace(/[^a-zA-Z]/g, "") === "REAL" || word.replace(/[^a-zA-Z]/g, "") === "STRENGTH" ? (
                   <span className="text-primary italic font-cormorant capitalize tracking-normal font-normal pr-1">
                     {word.toLowerCase()}
                   </span>

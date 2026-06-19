@@ -29,7 +29,7 @@ export default function TrainersPreview() {
                   MEET THE <span className="text-primary italic font-cormorant capitalize font-normal">Coaches</span>
                 </>
               }
-              subtitle="THE ELITE TEAM"
+              subtitle="EXPERIENCED COACHES"
             />
             <Link
               href="/trainers"

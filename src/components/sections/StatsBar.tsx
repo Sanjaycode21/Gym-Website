@@ -7,8 +7,8 @@ import ScrollReveal from "../ui/ScrollReveal";
 const stats = [
   { value: 1200, suffix: "+", label: "ACTIVE MEMBERS" },
   { value: 12, suffix: "", label: "YEARS ACTIVE" },
-  { value: 15, suffix: "", label: "ELITE COACHES" },
-  { value: 120, suffix: "+", label: "PREMIUM EQUIPMENT" },
+  { value: 15, suffix: "", label: "EXPERT COACHES" },
+  { value: 120, suffix: "+", label: "STRENGTH STATIONS" },
 ];
 
 export default function StatsBar() {

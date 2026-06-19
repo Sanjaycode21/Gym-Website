@@ -24,8 +24,8 @@ const addOns = [
 
 const planDetails = {
   starter: { name: "STARTER", price: 999, slug: "starter", tier: "BASIC ACCESS" },
-  pro: { name: "PRO", price: 1799, slug: "pro", tier: "FULL EXPERIENCE" },
-  elite: { name: "ELITE", price: 2999, slug: "elite", tier: "VIP STATUS" },
+  pro: { name: "PRO", price: 1799, slug: "pro", tier: "STANDARD MEMBERSHIP" },
+  elite: { name: "ELITE", price: 2999, slug: "elite", tier: "PREMIUM ACCESS" },
 };
 
 function CheckoutContent() {
@@ -168,12 +168,12 @@ function CheckoutContent() {
               <form className="space-y-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
                   {[
-                    { label: "Full Name", key: "fullName", type: "text", placeholder: "ALEXANDER VANCE" },
-                    { label: "Email Address", key: "email", type: "email", placeholder: "ALEXANDER.V@FORGE.COM" },
-                    { label: "Phone Number", key: "phone", type: "tel", placeholder: "+91 (555) 000-0000" },
+                    { label: "Full Name", key: "fullName", type: "text", placeholder: "e.g. Sanjay Kumar" },
+                    { label: "Email Address", key: "email", type: "email", placeholder: "e.g. sanjay@domain.com" },
+                    { label: "Phone Number", key: "phone", type: "tel", placeholder: "e.g. +91 98765 43210" },
                     { label: "Date of Birth", key: "dob", type: "date", placeholder: "" },
-                    { label: "Emergency Contact Name", key: "emergencyName", type: "text", placeholder: "CONTACT NAME" },
-                    { label: "Emergency Contact Phone", key: "emergencyPhone", type: "tel", placeholder: "+91 (555) 000-0000" },
+                    { label: "Emergency Contact Name", key: "emergencyName", type: "text", placeholder: "e.g. Ramesh Kumar" },
+                    { label: "Emergency Contact Phone", key: "emergencyPhone", type: "tel", placeholder: "e.g. +91 98765 01234" },
                   ].map((field) => (
                     <div key={field.key} className="flex flex-col gap-2">
                       <label className="font-[family-name:var(--font-dm-sans)] text-[10px] font-bold uppercase tracking-[0.1em] text-[#99907e]">

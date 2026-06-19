@@ -50,25 +50,25 @@ const syncopate = Syncopate({
 /* ─── Metadata ───────────────────────────────────────────────────────────────── */
 export const metadata: Metadata = {
   title: {
-    default: "IronForge Fitness — Premium Luxury Gym",
+    default: "IronForge Fitness — Premium Strength & Conditioning Gym",
     template: "%s | IronForge Fitness",
   },
   description:
-    "IronForge Fitness is a luxury-tier gym and wellness destination. Elite training, world-class trainers, and premium facilities designed for those who demand the absolute best.",
+    "IronForge Fitness is a premium strength and conditioning gym. Train with professional-grade equipment, certified coaches, and structured programs built to help you get results.",
   keywords: [
-    "luxury gym",
+    "strength gym",
     "premium fitness",
-    "elite training",
+    "weightlifting gym",
     "IronForge",
     "personal training",
-    "wellness",
+    "strength and conditioning",
   ],
   openGraph: {
     type: "website",
     siteName: "IronForge Fitness",
-    title: "IronForge Fitness — Premium Luxury Gym",
+    title: "IronForge Fitness — Premium Strength & Conditioning Gym",
     description:
-      "Elite training, world-class trainers, and premium facilities designed for those who demand the absolute best.",
+      "Train with professional-grade equipment, certified coaches, and structured programs built to help you get results.",
     images: [
       {
         url: "/og-image.jpg",
@@ -80,8 +80,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "IronForge Fitness — Premium Luxury Gym",
-    description: "Luxury-tier gym and wellness destination.",
+    title: "IronForge Fitness — Premium Strength & Conditioning Gym",
+    description: "Premium strength and conditioning gym built for serious training.",
   },
   robots: {
     index: true,

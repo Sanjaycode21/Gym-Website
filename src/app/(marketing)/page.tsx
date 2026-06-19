@@ -11,9 +11,9 @@ import BlogPreview from "@/components/sections/BlogPreview";
 import CTABanner from "@/components/sections/CTABanner";
 
 export const metadata: Metadata = {
-  title: "IronForge Fitness — Premium Luxury Gym",
+  title: "IronForge Fitness — Premium Strength & Conditioning Gym",
   description:
-    "IronForge Fitness is a luxury-tier gym and wellness destination. Elite training, world-class trainers, and premium facilities designed for those who demand the absolute best.",
+    "IronForge Fitness is a premium strength and conditioning gym. Train with professional-grade equipment, certified coaches, and structured programs built to help you get results.",
 };
 
 export default function HomePage() {

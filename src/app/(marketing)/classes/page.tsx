@@ -270,7 +270,7 @@ export default function ClassesPage() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-end justify-between border-b border-outline-variant/30 pb-12">
           <div className="w-full md:w-2/3">
             <span className="font-dm-sans text-xs font-bold text-primary mb-4 block tracking-[0.3em] uppercase">
-              REDEFINE YOUR LIMITS
+              STRUCTURED GROUP TRAINING
             </span>
             <h1 className="font-bebas text-6xl md:text-8xl leading-tight uppercase">
               Group Classes
@@ -595,11 +595,10 @@ export default function ClassesPage() {
       <section className="relative py-20 bg-surface-container-lowest overflow-hidden border-t border-outline-variant/30">
         <div className="relative z-10 px-6 md:px-grid-margin max-w-7xl mx-auto text-center">
           <h2 className="font-bebas text-5xl md:text-6xl mb-6 uppercase tracking-wide">
-            Not finding your fit?
+            Looking for 1-on-1 coaching?
           </h2>
           <p className="font-dm-sans text-lg text-on-surface-variant max-w-2xl mx-auto mb-10 leading-relaxed">
-            Our trainers offer specialized 1-on-1 sessions tailored to your
-            unique biomechanics, performance metrics, and fitness journey.
+            Our coaches offer private training sessions tailored to your specific goals, lifting experience, and schedule.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link

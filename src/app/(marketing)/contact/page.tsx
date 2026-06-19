@@ -63,7 +63,7 @@ export default function ContactPage() {
               CONNECT WITH US
             </span>
             <h1 className="font-bebas text-6xl md:text-8xl text-on-surface max-w-4xl leading-tight uppercase">
-              REACH THE <span className="text-primary italic font-cormorant capitalize">Forge</span>
+              CONTACT <span className="text-primary italic font-cormorant capitalize">IronForge</span>
             </h1>
             <div className="w-24 h-1 line-glow mt-4"></div>
           </div>
@@ -84,8 +84,8 @@ export default function ContactPage() {
                   <div>
                     <h4 className="font-bebas text-xl text-on-surface mb-2 tracking-wider">LOCATION</h4>
                     <p className="font-dm-sans text-sm text-on-surface-variant leading-relaxed">
-                      1200 Elite Ave, Platinum District<br />
-                      Suite 400, Mumbai, MH 400001
+                      120 Senapati Bapat Marg, Lower Parel<br />
+                      Mumbai, MH 400013
                     </p>
                   </div>
                 </div>
@@ -143,7 +143,7 @@ export default function ContactPage() {
                         MESSAGE TRANSMITTED
                       </h3>
                       <p className="font-dm-sans text-sm text-on-surface-variant max-w-sm mx-auto leading-relaxed">
-                        Thank you for reaching out to IronForge Fitness. Our membership relations advisor will contact you within the next 12 hours.
+                        Thank you for reaching out to IronForge. One of our team members will contact you within 24 hours.
                       </p>
                     </div>
                     <button
@@ -230,7 +230,7 @@ export default function ContactPage() {
                         className={`bg-[#0A0A0A] border ${
                           errors.message ? "border-error" : "border-outline-variant/50"
                         } focus:border-primary text-on-surface text-sm px-4 py-3 outline-none rounded-sm transition-all font-dm-sans resize-none`}
-                        placeholder="How can we assist your athletic performance goals?"
+                        placeholder="Tell us about your goals and how we can help."
                       />
                       {errors.message && (
                         <span className="text-error text-xs font-dm-sans mt-1">{errors.message}</span>
@@ -273,9 +273,9 @@ export default function ContactPage() {
               <div className="w-12 h-12 bg-primary/10 text-primary border border-primary/30 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
                 <MapPin size={24} />
               </div>
-              <h3 className="font-bebas text-3xl text-on-surface tracking-wider">IRONFORGE PLATINUM ATHLETICS</h3>
+              <h3 className="font-bebas text-3xl text-on-surface tracking-wider">IRONFORGE STRENGTH CLUB</h3>
               <p className="font-dm-sans text-xs text-on-surface-variant tracking-widest uppercase">
-                1200 Elite Ave, Platinum District, Mumbai
+                120 Senapati Bapat Marg, Lower Parel, Mumbai
               </p>
               <a
                 href="https://maps.google.com"

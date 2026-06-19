@@ -158,7 +158,7 @@ export default function DashboardLayout({
         {/* Footer Shell */}
         <footer className="h-16 bg-[#111111]/40 backdrop-blur-xl border-t border-[#4d4637]/30 hidden md:flex items-center justify-between px-6 md:px-grid-margin z-40 mt-auto">
           <p className="font-dm-sans text-[10px] font-bold text-on-surface-variant tracking-[0.2em] uppercase">
-            © 2024 IRONFORGE FITNESS. ELITE CRAFTED.
+            © 2026 IRONFORGE FITNESS. ALL RIGHTS RESERVED.
           </p>
           <div className="flex gap-8">
             <Link

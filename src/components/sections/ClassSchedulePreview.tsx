@@ -23,7 +23,7 @@ export default function ClassSchedulePreview() {
                   Group <span className="text-primary italic font-cormorant capitalize font-normal">Classes</span>
                 </>
               }
-              subtitle="REDEFINE YOUR LIMITS"
+              subtitle="STRUCTURED GROUP CLASSES"
             />
             <Link
               href="/classes"
@@ -53,10 +53,10 @@ export default function ClassSchedulePreview() {
                 MOST POPULAR
               </span>
               <h3 className="font-bebas text-2xl md:text-3xl tracking-wider mb-2 uppercase text-on-surface">
-                Elite CrossFit AMRAP
+                Metabolic Conditioning
               </h3>
               <p className="font-dm-sans text-sm text-on-surface-variant max-w-md mb-6 leading-relaxed">
-                Master technical Olympic lifting movements and push your aerobic capacity with our flagship high-intensity conditioning blocks.
+                Improve your work capacity and cardiovascular endurance. This high-intensity class combines functional bodyweight movements, kettlebell exercises, and cardiovascular intervals led by our strength coaches.
               </p>
               <div className="flex flex-wrap items-center gap-6">
                 <button
@@ -88,10 +88,10 @@ export default function ClassSchedulePreview() {
                 </span>
               </div>
               <h3 className="font-bebas text-2xl tracking-wider mb-4 uppercase text-on-surface">
-                ZENITH YOGA FLOW
+                Mobility & Flow Yoga
               </h3>
               <p className="font-dm-sans text-sm text-on-surface-variant leading-relaxed">
-                A meditative yet physically demanding Vinyasa flow designed to increase flexibility, restore joint alignment, and enhance focus.
+                A Vinyasa yoga class focused on increasing joint range of motion, improving balance, and supporting post-workout recovery.
               </p>
             </div>
             <button

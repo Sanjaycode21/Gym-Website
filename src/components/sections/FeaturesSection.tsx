@@ -8,21 +8,21 @@ import ScrollReveal from "../ui/ScrollReveal";
 const features = [
   {
     icon: <Dumbbell className="w-10 h-10 text-primary" />,
-    title: "ATHLETIC ENGINEERING",
+    title: "PROFESSIONAL EQUIPMENT",
     description:
-      "Train with competition-grade Eleiko plates, Hammer Strength power racks, and customized biometric-tracking equipment engineered for peak output.",
+      "Train with competition-grade Eleiko barbell sets, Hammer Strength power racks, and a curated selection of pin-selected and plate-loaded strength machines.",
   },
   {
     icon: <Sparkles className="w-10 h-10 text-primary" />,
-    title: "LUXURY RECOVERY",
+    title: "POST-TRAINING RECOVERY",
     description:
-      "Access our dedicated recovery suites featuring private infrared saunas, cryotherapy chambers, compression boots, and professional sport therapies.",
+      "Optimize your recovery with our on-site infrared saunas, cold plunge tubs, and dedicated mobility area to help you recover faster and prevent injury.",
   },
   {
     icon: <ShieldCheck className="w-10 h-10 text-primary" />,
-    title: "ELITE COACHING",
+    title: "EXPERT COACHING",
     description:
-      "Work 1-on-1 with coaches holding master's degrees in biomechanics, IFBB pro cards, or professional sports consulting credentials.",
+      "Get professional guidance from experienced, certified trainers who build custom strength, fat loss, or conditioning programs tailored to your current fitness level.",
   },
 ];
 
@@ -35,7 +35,7 @@ export default function FeaturesSection() {
           <SectionHeading
             title={
               <>
-                Uncompromising <span className="text-primary italic font-cormorant capitalize font-normal">Standards</span>
+                Built for Serious <span className="text-primary italic font-cormorant capitalize font-normal">Training</span>
               </>
             }
             subtitle="WHY IRONFORGE"

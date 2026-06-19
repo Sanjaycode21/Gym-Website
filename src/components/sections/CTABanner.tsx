@@ -23,7 +23,7 @@ export default function CTABanner() {
     }
     return (
       <>
-        Ready to Forge Your <span className="text-primary italic font-cormorant capitalize font-normal">Legacy?</span>
+        Ready to Train with <span className="text-primary italic font-cormorant capitalize font-normal">Purpose?</span>
       </>
     );
   };
@@ -31,11 +31,11 @@ export default function CTABanner() {
   const getSubtitle = () => {
     if (user) {
       if (hasMembership) {
-        return "Access your personalized member panel to book elite training sessions, review schedules, and track your metrics.";
+        return "Go to your member dashboard to manage your schedule, book training sessions, and view your account details.";
       }
-      return "You don't have an active membership yet. Select one of our premium athletic plans to begin your training legacy.";
+      return "Choose one of our membership plans to get full access to the gym, locker rooms, saunas, and group classes.";
     }
-    return "Join the ranks of the elite. Start your transformation today with IronForge's premium facility layouts, world-class athletic coaches, and recovery zones.";
+    return "Visit our facility, meet our coaches, and see the equipment first-hand. Book a private tour of the gym today.";
   };
 
   const getCTA = () => {

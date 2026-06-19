@@ -93,9 +93,11 @@ export default function TrainersPage() {
                     <h3 className="font-bebas text-3xl md:text-4xl text-on-surface">
                       {trainer.name}
                     </h3>
-                    <p className="font-dm-sans text-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-500 mt-4 border-t border-primary/20 pt-4">
-                      {trainer.bio}
-                    </p>
+                    <div className="max-h-0 group-hover:max-h-40 overflow-hidden transition-all duration-500 ease-in-out">
+                      <p className="font-dm-sans text-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-500 mt-4 border-t border-primary/20 pt-4">
+                        {trainer.bio}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </ScrollReveal>

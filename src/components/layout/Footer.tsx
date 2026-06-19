@@ -13,11 +13,11 @@ export default function Footer() {
   return (
     <footer className="bg-background border-t border-primary/50 mt-auto">
       {/* Main Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-gutter px-6 md:px-grid-margin py-16 md:py-section-gap-desktop max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-10 lg:gap-gutter px-6 lg:px-grid-margin py-16 lg:py-section-gap-desktop max-w-7xl mx-auto">
         {/* Brand Column */}
-        <div className="col-span-1 md:col-span-1">
+        <div className="col-span-1 sm:col-span-2 lg:col-span-1">
           <div className="mb-6">
-            <Logo textSize="text-3xl" iconSize={34} />
+            <Logo textSize="text-2xl lg:text-3xl" iconSize={30} />
           </div>
           <p className="text-on-surface-variant font-dm-sans text-sm leading-relaxed max-w-xs mb-8">
             PREMIUM STRENGTH & CONDITIONING CLUB BUILT FOR SERIOUS TRAINING.
@@ -25,7 +25,7 @@ export default function Footer() {
         </div>
 
         {/* Quick Links Column */}
-        <div>
+        <div className="col-span-1 sm:col-span-1 lg:col-span-1">
           <h5 className="font-dm-sans text-[11px] font-bold text-primary mb-6 tracking-widest uppercase">
             EXPLORE
           </h5>
@@ -49,7 +49,7 @@ export default function Footer() {
         </div>
 
         {/* Legal Column */}
-        <div>
+        <div className="col-span-1 sm:col-span-1 lg:col-span-1">
           <h5 className="font-dm-sans text-[11px] font-bold text-primary mb-6 tracking-widest uppercase">
             LEGAL
           </h5>
@@ -68,7 +68,7 @@ export default function Footer() {
         </div>
 
         {/* Connect Column */}
-        <div>
+        <div className="col-span-1 sm:col-span-2 lg:col-span-1">
           <h5 className="font-dm-sans text-[11px] font-bold text-primary mb-6 tracking-widest uppercase">
             CONNECT
           </h5>

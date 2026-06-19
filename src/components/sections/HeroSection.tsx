@@ -138,10 +138,10 @@ export default function HeroSection() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="font-bebas text-6xl sm:text-7xl md:text-8xl leading-[0.9] text-on-background tracking-wider max-w-5xl text-left uppercase"
+          className="font-bebas text-6xl sm:text-7xl md:text-8xl leading-[0.9] text-on-background tracking-wider max-w-5xl text-left uppercase flex flex-wrap items-baseline"
         >
           {words.map((word, idx) => (
-            <span key={idx} className="inline-block mr-4 overflow-hidden">
+            <span key={idx} className="inline-block mr-4 overflow-hidden align-bottom pb-6 -mb-6">
               <motion.span variants={wordVariants} className="inline-block">
                 {word.replace(/[^a-zA-Z]/g, "") === "REAL" || word.replace(/[^a-zA-Z]/g, "") === "STRENGTH" ? (
                   <span className="text-primary italic font-cormorant capitalize tracking-normal font-normal pr-1">

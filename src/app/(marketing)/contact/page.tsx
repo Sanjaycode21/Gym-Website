@@ -84,8 +84,8 @@ export default function ContactPage() {
                   <div>
                     <h4 className="font-bebas text-xl text-on-surface mb-2 tracking-wider">LOCATION</h4>
                     <p className="font-dm-sans text-sm text-on-surface-variant leading-relaxed">
-                      120 Senapati Bapat Marg, Lower Parel<br />
-                      Mumbai, MH 400013
+                      15 Khader Nawaz Khan Road, Nungambakkam<br />
+                      Chennai, TN 600006
                     </p>
                   </div>
                 </div>
@@ -275,7 +275,7 @@ export default function ContactPage() {
               </div>
               <h3 className="font-bebas text-3xl text-on-surface tracking-wider">IRONFORGE STRENGTH CLUB</h3>
               <p className="font-dm-sans text-xs text-on-surface-variant tracking-widest uppercase">
-                120 Senapati Bapat Marg, Lower Parel, Mumbai
+                15 Khader Nawaz Khan Road, Nungambakkam, Chennai
               </p>
               <a
                 href="https://maps.google.com"

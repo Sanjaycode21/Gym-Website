@@ -5,10 +5,10 @@ import AnimatedCounter from "../ui/AnimatedCounter";
 import ScrollReveal from "../ui/ScrollReveal";
 
 const stats = [
-  { value: 1200, suffix: "+", label: "ACTIVE MEMBERS" },
-  { value: 12, suffix: "", label: "YEARS ACTIVE" },
-  { value: 15, suffix: "", label: "EXPERT COACHES" },
-  { value: 120, suffix: "+", label: "STRENGTH STATIONS" },
+  { value: 600, suffix: "+", label: "ACTIVE MEMBERS" },
+  { value: 5, suffix: "", label: "YEARS ACTIVE" },
+  { value: 8, suffix: "", label: "EXPERT COACHES" },
+  { value: 70, suffix: "+", label: "STRENGTH STATIONS" },
 ];
 
 export default function StatsBar() {
